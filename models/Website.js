@@ -1,0 +1,10 @@
+const mongoose = require("mongoose");
+
+const WebsiteSchema = new mongoose.Schema({
+  name: { type: String, required: true }, // Website Name
+  home: { type: mongoose.Schema.Types.ObjectId, ref: "Homepage" },
+  pricing: { type: mongoose.Schema.Types.ObjectId, ref: "Pricing" },
+  createdAt: { type: Date, default: Date.now },
+});
+
+module.exports = mongoose.model("Website", WebsiteSchema);
