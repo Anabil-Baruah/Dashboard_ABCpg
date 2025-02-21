@@ -4,6 +4,8 @@ const WebsiteSchema = new mongoose.Schema({
   name: { type: String, required: true }, // Website Name
   home: { type: mongoose.Schema.Types.ObjectId, ref: "Homepage" },
   pricing: { type: mongoose.Schema.Types.ObjectId, ref: "Pricing" },
+  about: { type: mongoose.Schema.Types.ObjectId, ref: "About" },
+  service: { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
   createdAt: { type: Date, default: Date.now },
 });
 

@@ -2,6 +2,8 @@ const express = require("express");
 const Website = require("../models/Website");
 const Homepage = require("../models/Homepage");
 const Pricing = require("../models/Pricing");
+const About = require("../models/About");
+const Service = require("../models/Service");
 
 const router = express.Router();
 
@@ -22,6 +24,8 @@ router.get("/:id", async (req, res) => {
     const website = await Website.findById(req.params.id)
       .populate("home") // Populating homepage details
       .populate("pricing") // Populating pricing page details
+      .populate("about") // Populating about page details
+      .populate("service") // Populating service page details
       .exec();
 
     if (!website) {
@@ -41,7 +45,7 @@ router.get("/:id", async (req, res) => {
  */
 router.post("/", async (req, res) => {
   try {
-    const { name, homeData, pricingData } = req.body;
+    const { name, homeData, pricingData, aboutData, servicesData } = req.body;
 
     // Create the Homepage document
     const home = new Homepage(homeData);
@@ -51,11 +55,21 @@ router.post("/", async (req, res) => {
     const pricing = new Pricing(pricingData);
     await pricing.save();
 
+    // Create the About document
+    const about = new About(aboutData);
+    await about.save();
+
+    //Create the service document
+    const service = new Service(servicesData);
+    await service.save();
+
     // Create the Website document with references to Homepage and Pricing
     const website = new Website({
       name,
       home: home._id,
       pricing: pricing._id,
+      about: about._id,
+      service: service._id,
     });
 
     await website.save();
@@ -88,6 +102,12 @@ router.delete("/:id", async (req, res) => {
     }
     if (website.pricing) {
       await Pricing.deleteOne({ _id: website.pricing });
+    }
+    if (website.about) {
+      await About.deleteOne({ _id: website.about });
+    }
+    if (website.service) {
+      await Service.deleteOne({ _id: website.service });
     }
 
     // Delete the Website document

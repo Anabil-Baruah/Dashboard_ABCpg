@@ -1,78 +1,48 @@
 const express = require('express');
-const About = require('../models/aboutSchema');
+const About = require('../models/About');
 
 const router = express.Router();
 
-// Get all about entries
-router.get('/', async (req, res) => {
-    try {
-        const aboutEntries = await About.find();
-        res.json(aboutEntries);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
+/** 
+ * @route   POST /about
+ * @desc    Create about data
+ */
+router.post("/", async (req, res) => {
+  try {
+    const about = new About(req.body);
+    await about.save();
+    res.status(201).json({ message: "About created successfully", about });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create pricing", details: error.message });
+  }
 });
 
-// Get one about entry
-router.get('/:id', getAboutEntry, (req, res) => {
-    res.json(res.aboutEntry);
+/** 
+ * @route   PUT /about/:id
+ * @desc    Update about data
+ */
+router.put("/:id", async (req, res) => {
+  try {
+    const about = await About.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!about) return res.status(404).json({ error: "Pricing not found" });
+
+    res.status(200).json({ message: "Pricing updated successfully", about });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update pricing", details: error.message });
+  }
 });
 
-// Create a new about entry
-router.post('/', async (req, res) => {
-    const aboutEntry = new About({
-        title: req.body.title,
-        description: req.body.description
-    });
-
-    try {
-        const newAboutEntry = await aboutEntry.save();
-        res.status(201).json(newAboutEntry);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
+/** 
+ * @route   DELETE /api/about/:id
+ * @desc    Delete about data
+ */
+router.delete("/:id", async (req, res) => {
+  try {
+    await About.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "Pricing deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete pricing", details: error.message });
+  }
 });
-
-// Update an about entry
-router.patch('/:id', getAboutEntry, async (req, res) => {
-    if (req.body.title != null) {
-        res.aboutEntry.title = req.body.title;
-    }
-    if (req.body.description != null) {
-        res.aboutEntry.description = req.body.description;
-    }
-
-    try {
-        const updatedAboutEntry = await res.aboutEntry.save();
-        res.json(updatedAboutEntry);
-    } catch (err) {
-        res.status(400).json({ message: err.message });
-    }
-});
-
-// Delete an about entry
-router.delete('/:id', getAboutEntry, async (req, res) => {
-    try {
-        await res.aboutEntry.remove();
-        res.json({ message: 'Deleted About Entry' });
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-async function getAboutEntry(req, res, next) {
-    let aboutEntry;
-    try {
-        aboutEntry = await About.findById(req.params.id);
-        if (aboutEntry == null) {
-            return res.status(404).json({ message: 'Cannot find about entry' });
-        }
-    } catch (err) {
-        return res.status(500).json({ message: err.message });
-    }
-
-    res.aboutEntry = aboutEntry;
-    next();
-}
 
 module.exports = router;

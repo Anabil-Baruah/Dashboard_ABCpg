@@ -22,6 +22,7 @@ router.post("/", async (req, res) => {
  * @desc    Update homepage data
  */
 router.put("/:id", async (req, res) => {
+  console.log("route hit", req.body)
   try {
     const homepage = await Homepage.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!homepage) return res.status(404).json({ error: "Homepage not found" });

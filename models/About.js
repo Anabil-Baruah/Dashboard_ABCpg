@@ -4,10 +4,9 @@ const AboutSchema = new mongoose.Schema({
     title: { type: String, required: true },        //Website that brings leads
     heading: { type: String, required: true },      //Why Choose ABC PG?
     features: [{
-        icon: { type: String },
+        icon: { url: { type: String }, backgroundColor: { type: String } },  
         title: { type: String },
         description: { type: String },
-        backgroundColor: { type: String },
     }],
 });
 

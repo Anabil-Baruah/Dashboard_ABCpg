@@ -6,6 +6,8 @@ const connectDB = require("./config/db");
 const websiteRoutes = require("./routes/websiteRoutes");
 const homeRoutes = require("./routes/homeRoutes");
 const pricingRoutes = require("./routes/pricingRoutes");
+const aboutRoutes = require("./routes/aboutRoutes");
+const serviceRoutes = require("./routes/serviceRoutes");
 
 dotenv.config();
 const app = express();
@@ -18,6 +20,9 @@ connectDB();
 app.use("/websites", websiteRoutes);
 app.use("/home", homeRoutes);
 app.use("/pricing", pricingRoutes);
+app.use("/about", aboutRoutes);
+app.use("/service", serviceRoutes);
+
 
 const PORT = 4000;
 app.listen(PORT, () => {
