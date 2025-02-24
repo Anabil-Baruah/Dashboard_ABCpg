@@ -4,6 +4,10 @@ const Homepage = require("../models/Homepage");
 const Pricing = require("../models/Pricing");
 const About = require("../models/About");
 const Service = require("../models/Service");
+const dotenv = require("dotenv");
+
+
+dotenv.config();
 
 const router = express.Router();
 
@@ -11,7 +15,8 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const websites = await Website.find().populate("home").populate("pricing");
-    res.status(200).json(websites);
+    console.log("hit route")
+    res.render("index");    
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch websites" });
   }

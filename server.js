@@ -16,6 +16,8 @@ app.use(express.json());
 
 connectDB();
 
+app.use('/', express.static(__dirname + '/public'));
+
 // Routes
 app.use("/websites", websiteRoutes);
 app.use("/home", homeRoutes);
@@ -23,7 +25,7 @@ app.use("/pricing", pricingRoutes);
 app.use("/about", aboutRoutes);
 app.use("/service", serviceRoutes);
 
-
+app.set('view engine', 'ejs');
 const PORT = 4000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
