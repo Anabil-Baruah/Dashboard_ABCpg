@@ -24,6 +24,7 @@
     <link href="libs/%40iconscout/unicons/css/line.css" type="text/css" rel="stylesheet" />
     <!-- Style Css-->
     <link href="css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
+    
 
 </head>
 
@@ -41,38 +42,7 @@
 
     <div class="page-wrapper toggled">
         <!-- sidebar-wrapper -->
-        <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
-            <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
-                <div class="sidebar-brand">
-                    <a href="index.html">
-                        <img src="images/logo-dark.png" height="24" class="logo-light-mode" alt="">
-                        <img src="images/logo-light.png" height="24" class="logo-dark-mode" alt="">
-                        <span class="sidebar-colored">
-                            <img src="images/logo-light.png" height="24" alt="">
-                        </span>
-                    </a>
-                </div>
-
-                <ul class="sidebar-menu">
-                    <li class="">
-                        <a href="index.html"><i class="ti ti-home me-2"></i>Dashboard</a>
-                    </li>
-                    <li class="">
-                        <a href="edit-website.html"><i class="ti ti-home me-2"></i>Add website</a>
-                    </li>
-                </ul>
-                <!-- sidebar-menu  -->
-            </div>
-            <!-- Sidebar Footer -->
-            <ul class="sidebar-footer list-unstyled mb-0">
-                <li class="list-inline-item mb-0">
-                    <li class="list-inline-item mb-0">
-                        <!-- <button type="button" class="btn btn-danger mb-3"><i class="ti ti-logout "></i> Log out</button> -->
-                </li>
-                </li>
-            </ul>
-            <!-- Sidebar Footer -->
-        </nav>
+        <%- include('./common/navbar.ejs')%>
         <!-- sidebar-wrapper  -->
 
         <!-- Start Page Content -->
@@ -322,17 +292,18 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
+                                        <th>Brand Name</th>
+                                        <th>Contact no.</th>
                                         <th class="text-center">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <% websites.forEach((website, index) => { %>
                                     <tr>
-                                        <td>1</td>
-                                        <td>John Doe</td>
-                                        <td>johndoe@example.com</td>
-                                        <td>Admin</td>
+                                        <td><%= index + 1 %></td>
+                                        <td><%= website.name %></td>
+                                        <td><%= website.home?.navbar?.brandName %></td>
+                                        <td><%= website.home?.navbar?.contact?.number %></td>
                                         <td class="text-center">
                                             <button href="/shreethemes.in/landrick/dashboard/edit-website.html"
                                                 class="btn btn-primary btn-sm me-2 toggle-btn">View</button>
@@ -340,6 +311,7 @@
 
                                         </td>
                                     </tr>
+                                    <% }) %>
                                 </tbody>
                             </table>
                         </div>

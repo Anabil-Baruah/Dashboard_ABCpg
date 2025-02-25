@@ -26,7 +26,6 @@
     <link href="css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
 
 </head>
-
 <body>
     <!-- Loader -->
     <!-- <div id="preloader">
@@ -41,36 +40,7 @@
 
     <div class="page-wrapper toggled">
         <!-- sidebar-wrapper -->
-        <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
-            <div class="sidebar-content" data-simplebar style="height: calc(100% - 60px);">
-                <div class="sidebar-brand">
-                    <a href="index.html">
-                        <img src="images/logo-dark.png" height="24" class="logo-light-mode" alt="">
-                        <img src="images/logo-light.png" height="24" class="logo-dark-mode" alt="">
-                        <span class="sidebar-colored">
-                            <img src="images/logo-light.png" height="24" alt="">
-                        </span>
-                    </a>
-                </div>
-
-                <ul class="sidebar-menu">
-                    <li class="">
-                        <a href="index.html"><i class="ti ti-home me-2"></i>Dashboard</a>
-                    </li>
-                    <li class="">
-                        <a href="edit-website.html"><i class="ti ti-home me-2"></i>Add website</a>
-                    </li>
-                </ul>
-                <!-- sidebar-menu  -->
-            </div>
-            <!-- Sidebar Footer -->
-            <ul class="sidebar-footer list-unstyled mb-0">
-                <li class="list-inline-item mb-0">
-                        <!-- <button type="button" class="btn btn-danger mb-3"><i class="ti ti-logout "></i> Log out</button> -->
-                </li>
-            </ul>
-            <!-- Sidebar Footer -->
-        </nav>
+        <%- include('./common/navbar.ejs')%>
         <!-- sidebar-wrapper  -->
 
         <!-- Start Page Content -->
@@ -244,15 +214,15 @@
                         <h2 class="text-center mb-4">Website Configuration Form</h2>
                         <div class="card shadow-lg">
                             <div class="card-body">
-                                <form>
+                                <form id="pgForm">
                                     <!-- Website Name -->
                                     <div class="mb-3">
                                         <label class="form-label">Website Name</label>
-                                        <input type="text" class="form-control" placeholder="Enter website name"
+                                        <input type="text" id="name" class="form-control" placeholder="Enter website name"
                                             required>
                                     </div>
-
                                     <hr>
+
 
                                     <!-- Home Page Description -->
                                     <h4 class="mb-3">Home Page Details</h4>
@@ -549,5 +519,70 @@
     <script src="js/plugins.init.js"></script>
     <script src="js/app.js"></script>
 </body>
+
+<script>
+    document.getElementById("pgForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent form from reloading the page
+
+    // Get form values
+    const name = document.getElementById("name").value;
+    const brandName = document.getElementById("brandName").value;
+    const contactNumber = document.getElementById("contactNumber").value;
+    const contactLink = document.getElementById("contactLink").value;
+    const heading = document.getElementById("heading").value;
+    const subheading = document.getElementById("subheading").value;
+    const description = document.getElementById("description").value;
+    const buttonText = document.getElementById("buttonText").value;
+    const buttonLink = document.getElementById("buttonLink").value;
+
+    // Structure the data as required
+    const formData = {
+        name: name,
+        homeData: {
+            navbar: {
+                brandName: brandName,
+                contact: {
+                    number: contactNumber,
+                    status: true,
+                    link: contactLink
+                },
+                about: { status: true },
+                services: { status: true },
+                team: { status: true },
+                pricing: { status: true },
+                blog: { status: true }
+            },
+            content: {
+                heading: heading,
+                subheading: subheading,
+                description: description,
+                buttonText: buttonText,
+                buttonLink: buttonLink
+            }
+        }
+    };
+
+    console.log("Data to be sent:", formData);
+
+    // Send data to backend (Replace 'your-api-endpoint' with actual URL)
+    fetch("http://localhost:4000.com/websites", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("Success:", data);
+        alert("Data submitted successfully!");
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Error submitting data.");
+    });
+});
+
+</script>
 
 </html>

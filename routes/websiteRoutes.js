@@ -14,14 +14,23 @@ const router = express.Router();
 // Get all websites
 router.get("/", async (req, res) => {
   try {
-    const websites = await Website.find().populate("home").populate("pricing");
-    console.log("hit route")
-    res.render("index");    
+    const websites = await Website.find().populate("home");
+    console.log(websites)
+    res.render("index", { websites: websites });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch websites" });
   }
 });
 
+
+router.get("/add-website/add", async (req, res) => {
+  try {
+    const websites = await Website.find().populate("home").populate("pricing");
+    res.render("add-website");
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch websites" });
+  }
+});
 
 // Get a specific website by ID
 router.get("/:id", async (req, res) => {
@@ -44,11 +53,13 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+
 /** 
  * @route   POST /api/websites
  * @desc    Create a new website with homepage & pricing
  */
 router.post("/", async (req, res) => {
+  console.log(req.body);
   try {
     const { name, homeData, pricingData, aboutData, servicesData } = req.body;
 
