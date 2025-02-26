@@ -31,19 +31,19 @@ document.addEventListener("DOMContentLoaded", function () {
             <h6>Feature ${featureCount}</h6>
             <div class="mb-2">
                 <label class="form-label">Icon URL</label>
-                <input type="text" class="form-control" placeholder="Enter icon URL">
+                <input type="text" id = "featureIcon" class="form-control" placeholder="Enter icon URL">
             </div>
             <div class="mb-2">
                 <label class="form-label">Icon Background Color</label>
-                <input type="color" class="form-control form-control-color">
+                <input type="color" id="featureBgColor" class="form-control form-control-color">
             </div>
             <div class="mb-2">
                 <label class="form-label">Feature Title</label>
-                <input type="text" class="form-control" placeholder="Enter feature title">
+                <input type="text" id="featureTitle" class="form-control" placeholder="Enter feature title">
             </div>
             <div class="mb-2">
                 <label class="form-label">Feature Description</label>
-                <textarea class="form-control" rows="2" placeholder="Enter feature description"></textarea>
+                <textarea class="form-control" id="featureDescription" rows="2" placeholder="Enter feature description"></textarea>
             </div>
             <button type="button" class="btn btn-danger btn-sm remove-feature" data-id="feature-${featureCount}">Remove Feature</button>
         </div>
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     // Toggle Service Section
-    document.getElementById("serviceToggle").addEventListener("change", function () {
+    document.getElementById("servicesToggle").addEventListener("change", function () {
         let serviceFields = document.querySelectorAll("#serviceSection input, #serviceSection textarea, #addFeatureBtn, #addCardBtn");
         serviceFields.forEach(field => field.disabled = !this.checked);
     });

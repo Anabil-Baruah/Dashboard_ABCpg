@@ -234,28 +234,40 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label class="form-label">Main Heading</label>
-                                        <input type="text" class="form-control" placeholder="Enter main heading">
+                                        <label class="form-label">Nav bar Brand</label>
+                                        <input type="text" id="brandName" class="form-control" placeholder="Enter main heading">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Contact Number </label>
+                                        <input type="number" id="contactNumber" class="form-control" placeholder="Enter main heading">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Contact Number link</label>
+                                        <input type="text" id="contactLink" class="form-control" placeholder="Enter main heading">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Button Content</label>
-                                        <input type="text" class="form-control" placeholder="Enter button text">
+                                        <input type="text" id="buttonText" class="form-control" placeholder="Enter button text">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Button Link</label>
+                                        <input type="text" id="buttonLink" class="form-control" placeholder="Enter button link">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Button Color</label>
-                                        <input type="color" class="form-control form-control-color">
+                                        <input type="color" id="buttonColor" class="form-control form-control-color">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Body Main Heading</label>
-                                        <input type="text" class="form-control" placeholder="Enter body heading">
+                                        <input type="text" id="heading" class="form-control" placeholder="Enter body heading">
                                     </div>
 
                                     <div class="mb-3">
                                         <label class="form-label">Sub Heading</label>
-                                        <input type="text" class="form-control" placeholder="Enter sub heading">
+                                        <input type="text" id="subheading" class="form-control" placeholder="Enter sub heading">
                                     </div>
 
                                     <hr>
@@ -298,7 +310,7 @@
                                     <hr>
                                     <h4 class="mb-3">Services Sections</h4>
                                     <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input" type="checkbox" id="serviceToggle" checked>
+                                        <input class="form-check-input" type="checkbox" id="servicesToggle" checked>
                                         <label class="form-check-label" for="serviceToggle">Enable Service
                                             Section</label>
                                     </div>
@@ -512,6 +524,7 @@
     <!-- JAVASCRIPT -->
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/addWebsite.js"></script>
+    <script src="js/submitWebsite.js"></script>
     <script src="libs/feather-icons/feather.min.js"></script>
     <script src="libs/simplebar/simplebar.min.js"></script>
     <script src="libs/apexcharts/apexcharts.min.js"></script>
@@ -519,70 +532,4 @@
     <script src="js/plugins.init.js"></script>
     <script src="js/app.js"></script>
 </body>
-
-<script>
-    document.getElementById("pgForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form from reloading the page
-
-    // Get form values
-    const name = document.getElementById("name").value;
-    const brandName = document.getElementById("brandName").value;
-    const contactNumber = document.getElementById("contactNumber").value;
-    const contactLink = document.getElementById("contactLink").value;
-    const heading = document.getElementById("heading").value;
-    const subheading = document.getElementById("subheading").value;
-    const description = document.getElementById("description").value;
-    const buttonText = document.getElementById("buttonText").value;
-    const buttonLink = document.getElementById("buttonLink").value;
-
-    // Structure the data as required
-    const formData = {
-        name: name,
-        homeData: {
-            navbar: {
-                brandName: brandName,
-                contact: {
-                    number: contactNumber,
-                    status: true,
-                    link: contactLink
-                },
-                about: { status: true },
-                services: { status: true },
-                team: { status: true },
-                pricing: { status: true },
-                blog: { status: true }
-            },
-            content: {
-                heading: heading,
-                subheading: subheading,
-                description: description,
-                buttonText: buttonText,
-                buttonLink: buttonLink
-            }
-        }
-    };
-
-    console.log("Data to be sent:", formData);
-
-    // Send data to backend (Replace 'your-api-endpoint' with actual URL)
-    fetch("http://localhost:4000.com/websites", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log("Success:", data);
-        alert("Data submitted successfully!");
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        alert("Error submitting data.");
-    });
-});
-
-</script>
-
 </html>

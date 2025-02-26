@@ -21,7 +21,7 @@ const NavbarSchema = new mongoose.Schema({
 const PageContentSchema = new mongoose.Schema({
   heading: { type: String, required: true },
   subheading: { type: String },
-  description: { type: String },
+  buttonColor: { type: String},
   buttonText: { type: String },
   buttonLink: { type: String },
 });

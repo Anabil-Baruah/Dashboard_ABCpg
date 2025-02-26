@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
 const PricingSchema = new mongoose.Schema({
-  title: { type: String, required: true }, // e.g., "Single Occupancy Studios"
-  heading: { type: String, required: true },
+  title: { type: String }, // e.g., "Single Occupancy Studios"
+  heading: { type: String },
   subHeading: { type: String },
   priceLists: [{
-    title: { type: String, required: true },
-    price: { type: Number, required: true },
+    title: { type: String },
+    price: { type: Number },
     currency: { type: String, default: "₹" },
     duration: { type: String, default: "mo" },
     icon: { url: { type: String }, backgroundColor: { type: String } },

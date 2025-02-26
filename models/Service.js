@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const ServiceSchema = new mongoose.Schema({
-    title: { type: String, required: true },        //Amenities
-    heading: { type: String, required: true },      //What we offer
+    title: { type: String },        //Amenities
+    heading: { type: String },      //What we offer
     backgroundImage: { type: String },
     description: {
         type: String,
