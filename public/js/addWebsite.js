@@ -79,15 +79,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 <h6>Service Card ${cardCount}</h6>
                 <div class="mb-2">
                     <label class="form-label">Icon URL</label>
-                    <input type="text" class="form-control" placeholder="Enter icon URL">
+                    <input type="text" id="cardIcon" class="form-control" placeholder="Enter icon URL">
                 </div>
                 <div class="mb-2">
                     <label class="form-label">Icon Background Color</label>
-                    <input type="color" class="form-control form-control-color">
+                    <input type="color" id="cardBgColor" class="form-control form-control-color">
                 </div>
                 <div class="mb-2">
                     <label class="form-label">Title</label>
-                    <input type="text" class="form-control" placeholder="Enter card title">
+                    <input type="text" id="cardTitle" class="form-control" placeholder="Enter card title">
                 </div>
                 <button type="button" class="btn btn-danger btn-sm remove-card">Remove Card</button>
             </div>
@@ -119,17 +119,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 <div class="mb-2">
                     <label class="form-label">Plan Title</label>
-                    <input type="text" class="form-control" placeholder="Enter plan title">
+                    <input type="text" id="pricePlanTitle" class="form-control" placeholder="Enter plan title">
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 mb-2">
                         <label class="form-label">Price</label>
-                        <input type="number" class="form-control" placeholder="Enter price">
+                        <input type="number" id="priceValue" class="form-control" placeholder="Enter price">
                     </div>
                     <div class="col-md-4 mb-2">
                         <label class="form-label">Currency</label>
-                        <select class="form-select">
+                        <select class="form-select" id="priceCurrency">
                             <option value="₹" selected>₹ (INR)</option>
                             <option value="$">$ (USD)</option>
                             <option value="€">€ (EUR)</option>
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                     <div class="col-md-4 mb-2">
                         <label class="form-label">Duration</label>
-                        <select class="form-select">
+                        <select class="form-select" id="priceDuration">
                             <option value="mo" selected>Month</option>
                             <option value="yr">Year</option>
                             <option value="wk">Week</option>
@@ -151,11 +151,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 <!-- Icon -->
                 <div class="mb-2">
                     <label class="form-label">Icon URL</label>
-                    <input type="text" class="form-control" placeholder="Enter icon URL">
+                    <input type="text" id="priceIconUrl" class="form-control" placeholder="Enter icon URL">
                 </div>
                 <div class="mb-2">
                     <label class="form-label">Icon Background Color</label>
-                    <input type="color" class="form-control form-control-color">
+                    <input type="color" id="priceBgColor" class="form-control form-control-color">
                 </div>
 
                 <!-- Features List -->
