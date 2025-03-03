@@ -60,7 +60,6 @@ function extractServiceCards() {
     return serviceCardsArray;
 }
 
-
 function extractPricingPlans() {
     let priceListContainer = document.getElementById("priceListContainer");
 
