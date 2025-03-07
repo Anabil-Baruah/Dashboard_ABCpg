@@ -212,7 +212,7 @@
   <section id="about" class="gap">
     <div class="container">
       <div class="heading sec-title-animation animation-style2">
-        <span class="title-animation">
+        <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
           <%= website.about.title %>
         </span>
         <h2 class="title-animation">
@@ -460,8 +460,8 @@
               <span><%= plan.title %></span>
               <h5><%= plan?.price?.currency %><%= plan?.price?.value %> <sub>/ <%= plan?.price?.duration %></sub></h5>
             </div>
-            <div class="pricing-plans-text" style="background-color: <%= website?.websiteThemeColor %>;">
-              <i class="flaticon-price-tag"></i>
+            <div class="pricing-plans-text">
+              <i class="flaticon-price-tag" style="background-color: <%= website?.websiteThemeColor %>;"></i>
               <p>Privacy, focus, and inspiration </p>
               <ul class="chek">
                 <% plan.features.forEach((plan)=>{%>

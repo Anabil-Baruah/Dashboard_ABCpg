@@ -26,7 +26,6 @@ function extractFeatures() {
     return featuresArray;
 }
 
-
 function extractServiceCards() {
     let cardsContainer = document.getElementById("cardsContainer");
 
@@ -205,7 +204,8 @@ document.getElementById("pgForm").addEventListener("submit", function (event) {
         .then(response => response.json())
         .then(data => {
             console.log("Success:", data);
-            alert("Data submitted successfully!");
+            alert("Website has been created succesfully !");
+            window.location.reload();
         })
         .catch(error => {
             console.error("Error:", error);
