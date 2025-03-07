@@ -10,7 +10,6 @@ const ServiceSchema = new mongoose.Schema({
     },
     features: [{ type: String }], // List of included features
     card:[{
-        icon: { url: { type: String }, backgroundColor: { type: String } },  
         title: { type: String },
     }],
     video: { url: { type: String }, thumbnail: { type: String } },

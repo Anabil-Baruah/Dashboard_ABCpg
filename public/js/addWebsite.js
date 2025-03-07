@@ -29,14 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let featureHTML = `
         <div class="card p-3 mb-3 feature-card" id="feature-${featureCount}">
             <h6>Feature ${featureCount}</h6>
-            <div class="mb-2">
-                <label class="form-label">Icon URL</label>
-                <input type="text" id = "featureIcon" class="form-control" placeholder="Enter icon URL">
-            </div>
-            <div class="mb-2">
-                <label class="form-label">Icon Background Color</label>
-                <input type="color" id="featureBgColor" class="form-control form-control-color">
-            </div>
+            
             <div class="mb-2">
                 <label class="form-label">Feature Title</label>
                 <input type="text" id="featureTitle" class="form-control" placeholder="Enter feature title">
@@ -77,14 +70,6 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="card mt-3 border-primary">
             <div class="card-body">
                 <h6>Service Card ${cardCount}</h6>
-                <div class="mb-2">
-                    <label class="form-label">Icon URL</label>
-                    <input type="text" id="cardIcon" class="form-control" placeholder="Enter icon URL">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Icon Background Color</label>
-                    <input type="color" id="cardBgColor" class="form-control form-control-color">
-                </div>
                 <div class="mb-2">
                     <label class="form-label">Title</label>
                     <input type="text" id="cardTitle" class="form-control" placeholder="Enter card title">
@@ -148,16 +133,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     </div>
                 </div>
 
-                <!-- Icon -->
-                <div class="mb-2">
-                    <label class="form-label">Icon URL</label>
-                    <input type="text" id="priceIconUrl" class="form-control" placeholder="Enter icon URL">
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">Icon Background Color</label>
-                    <input type="color" id="priceBgColor" class="form-control form-control-color">
-                </div>
-
                 <!-- Features List -->
                 <h6>Features</h6>
                 <div id="featuresContainer${priceCount}"></div>
@@ -183,7 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let id = event.target.getAttribute("data-id");
             let featureHTML = `
             <div class="input-group mt-2">
-                <input type="text" class="form-control" placeholder="Enter feature">
+                <input type="text" id="priceFeature" class="form-control" placeholder="Enter feature">
                 <button type="button" class="btn btn-danger remove-feature">Remove</button>
             </div>
         `;

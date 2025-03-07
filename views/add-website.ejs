@@ -26,6 +26,7 @@
     <link href="css/style.min.css" class="theme-opt" rel="stylesheet" type="text/css" />
 
 </head>
+
 <body>
     <!-- Loader -->
     <!-- <div id="preloader">
@@ -41,402 +42,479 @@
     <div class="page-wrapper toggled">
         <!-- sidebar-wrapper -->
         <%- include('./common/navbar.ejs')%>
-        <!-- sidebar-wrapper  -->
+            <!-- sidebar-wrapper  -->
 
-        <!-- Start Page Content -->
-        <main class="page-content bg-light">
-            <!-- Top Header -->
-            <div class="top-header">
-                <div class="header-bar d-flex justify-content-between">
-                    <div class="d-flex align-items-center">
-                        <a href="#" class="logo-icon me-3">
-                            <img src="images/logo-icon.png" height="30" class="small" alt="">
-                            <span class="big">
-                                <img src="images/logo-dark.png" height="24" class="logo-light-mode" alt="">
-                                <img src="images/logo-light.png" height="24" class="logo-dark-mode" alt="">
-                            </span>
-                        </a>
-                        <a id="close-sidebar" class="btn btn-icon btn-soft-light" href="javascript:void(0)">
-                            <i class="ti ti-menu-2"></i>
-                        </a>
-                        <div class="search-bar p-0 d-none d-md-block ms-2">
-                            <div id="search" class="menu-search mb-0">
-                                <form role="search" method="get" id="searchform" class="searchform">
-                                    <div>
-                                        <input type="text" class="form-control border rounded" name="s" id="s"
-                                            placeholder="Search Keywords...">
-                                        <input type="submit" id="searchsubmit" value="Search">
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-
-                    <ul class="list-unstyled mb-0">
-                        <li class="list-inline-item mb-0">
-                            <a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                                aria-controls="offcanvasRight">
-                                <div class="btn btn-icon btn-soft-light"><i class="ti ti-settings"></i></div>
-                            </a>
-                        </li>
-
-                        <li class="list-inline-item mb-0 ms-1">
-                            <div class="dropdown dropdown-primary">
-                                <button type="button" class="btn btn-icon btn-soft-light dropdown-toggle p-0"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                                        class="ti ti-bell"></i></button>
-                                <span
-                                    class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
-                                    <span class="visually-hidden">New alerts</span>
+            <!-- Start Page Content -->
+            <main class="page-content bg-light">
+                <!-- Top Header -->
+                <div class="top-header">
+                    <div class="header-bar d-flex justify-content-between">
+                        <div class="d-flex align-items-center">
+                            <a href="#" class="logo-icon me-3">
+                                <img src="images/logo-icon.png" height="30" class="small" alt="">
+                                <span class="big">
+                                    <img src="images/logo-dark.png" height="24" class="logo-light-mode" alt="">
+                                    <img src="images/logo-light.png" height="24" class="logo-dark-mode" alt="">
                                 </span>
-
-                                <div class="dropdown-menu dd-menu shadow rounded border-0 mt-3 p-0" data-simplebar
-                                    style="height: 320px; width: 290px;">
-                                    <div class="d-flex align-items-center justify-content-between p-3 border-bottom">
-                                        <h6 class="mb-0 text-dark">Notifications</h6>
-                                        <span class="badge bg-soft-danger rounded-pill">3</span>
-                                    </div>
-                                    <div class="p-3">
-                                        <a href="#!" class="dropdown-item features feature-primary key-feature p-0">
-                                            <div class="d-flex align-items-center">
-                                                <div class="icon text-center rounded-circle me-2">
-                                                    <i class="ti ti-shopping-cart"></i>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <h6 class="mb-0 text-dark title">Order Complete</h6>
-                                                    <small class="text-muted">15 min ago</small>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#!"
-                                            class="dropdown-item features feature-primary key-feature p-0 mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <img src="images/client/04.jpg"
-                                                    class="avatar avatar-md-sm rounded-circle border shadow me-2"
-                                                    alt="">
-                                                <div class="flex-1">
-                                                    <h6 class="mb-0 text-dark title"><span
-                                                            class="fw-bold">Message</span> from Luis</h6>
-                                                    <small class="text-muted">1 hour ago</small>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#!"
-                                            class="dropdown-item features feature-primary key-feature p-0 mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="icon text-center rounded-circle me-2">
-                                                    <i class="ti ti-currency-dollar"></i>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <h6 class="mb-0 text-dark title"><span class="fw-bold">One Refund
-                                                            Request</span></h6>
-                                                    <small class="text-muted">2 hour ago</small>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#!"
-                                            class="dropdown-item features feature-primary key-feature p-0 mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <div class="icon text-center rounded-circle me-2">
-                                                    <i class="ti ti-truck-delivery"></i>
-                                                </div>
-                                                <div class="flex-1">
-                                                    <h6 class="mb-0 text-dark title">Deliverd your Order</h6>
-                                                    <small class="text-muted">Yesterday</small>
-                                                </div>
-                                            </div>
-                                        </a>
-
-                                        <a href="#!"
-                                            class="dropdown-item features feature-primary key-feature p-0 mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <img src="images/client/15.jpg"
-                                                    class="avatar avatar-md-sm rounded-circle border shadow me-2"
-                                                    alt="">
-                                                <div class="flex-1">
-                                                    <h6 class="mb-0 text-dark title"><span class="fw-bold">Cally</span>
-                                                        started following you</h6>
-                                                    <small class="text-muted">2 days ago</small>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
+                            </a>
+                            <a id="close-sidebar" class="btn btn-icon btn-soft-light" href="javascript:void(0)">
+                                <i class="ti ti-menu-2"></i>
+                            </a>
+                            <div class="search-bar p-0 d-none d-md-block ms-2">
+                                <div id="search" class="menu-search mb-0">
+                                    <form role="search" method="get" id="searchform" class="searchform">
+                                        <div>
+                                            <input type="text" class="form-control border rounded" name="s" id="s"
+                                                placeholder="Search Keywords...">
+                                            <input type="submit" id="searchsubmit" value="Search">
+                                        </div>
+                                    </form>
                                 </div>
-                            </div>
-                        </li>
-
-                        <li class="list-inline-item mb-0 ms-1">
-                            <div class="dropdown dropdown-primary">
-                                <button type="button" class="btn btn-soft-light dropdown-toggle p-0"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
-                                        src="images/client/05.jpg" class="avatar avatar-ex-small rounded"
-                                        alt=""></button>
-                                <div class="dropdown-menu dd-menu dropdown-menu-end shadow border-0 mt-3 py-3"
-                                    style="min-width: 200px;">
-                                    <a class="dropdown-item d-flex align-items-center text-dark pb-3"
-                                        href="profile.html">
-                                        <img src="images/client/05.jpg"
-                                            class="avatar avatar-md-sm rounded-circle border shadow" alt="">
-                                        <div class="flex-1 ms-2">
-                                            <span class="d-block">Cristina Julia</span>
-                                            <small class="text-muted">UI / UX Designer</small>
-                                        </div>
-                                    </a>
-                                    <a class="dropdown-item text-dark" href="index.html"><span
-                                            class="mb-0 d-inline-block me-1"><i class="ti ti-home"></i></span>
-                                        Dashboard</a>
-                                    <a class="dropdown-item text-dark" href="profile.html"><span
-                                            class="mb-0 d-inline-block me-1"><i class="ti ti-settings"></i></span>
-                                        Profile</a>
-                                    <a class="dropdown-item text-dark" href="email.html"><span
-                                            class="mb-0 d-inline-block me-1"><i class="ti ti-mail"></i></span> Email</a>
-                                    <div class="dropdown-divider border-top"></div>
-                                    <a class="dropdown-item text-dark" href="lock-screen.html"><span
-                                            class="mb-0 d-inline-block me-1"><i class="ti ti-lock"></i></span>
-                                        Lockscreen</a>
-                                    <a class="dropdown-item text-dark" href="login.html"><span
-                                            class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span>
-                                        Logout</a>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <!-- Top Header -->
-
-            <div class="container-fluid card">
-                <div class="layout-specing">
-                    <div class="container mt-5">
-                        <h2 class="text-center mb-4">Website Configuration Form</h2>
-                        <div class="card shadow-lg">
-                            <div class="card-body">
-                                <form id="pgForm">
-                                    <!-- Website Name -->
-                                    <div class="mb-3">
-                                        <label class="form-label">Website Name</label>
-                                        <input type="text" id="name" class="form-control" placeholder="Enter website name"
-                                            required>
-                                    </div>
-                                    <hr>
-
-
-                                    <!-- Home Page Description -->
-                                    <h4 class="mb-3">Home Page Details</h4>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Background Image</label>
-                                        <input type="file" class="form-control"
-                                            placeholder="Enter background image URL">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Nav bar Brand</label>
-                                        <input type="text" id="brandName" class="form-control" placeholder="Enter main heading">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Contact Number </label>
-                                        <input type="number" id="contactNumber" class="form-control" placeholder="Enter main heading">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Contact Number link</label>
-                                        <input type="text" id="contactLink" class="form-control" placeholder="Enter main heading">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Button Content</label>
-                                        <input type="text" id="buttonText" class="form-control" placeholder="Enter button text">
-                                    </div>
-                                    <div class="mb-3">
-                                        <label class="form-label">Button Link</label>
-                                        <input type="text" id="buttonLink" class="form-control" placeholder="Enter button link">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Button Color</label>
-                                        <input type="color" id="buttonColor" class="form-control form-control-color">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Body Main Heading</label>
-                                        <input type="text" id="heading" class="form-control" placeholder="Enter body heading">
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label">Sub Heading</label>
-                                        <input type="text" id="subheading" class="form-control" placeholder="Enter sub heading">
-                                    </div>
-
-                                    <hr>
-
-                                    <!-- Section Toggles -->
-
-                                    <!-- About Section -->
-
-                                    <h4 class="mb-3">About Section</h4>
-
-                                    <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input section-toggle" type="checkbox" id="aboutToggle"
-                                            checked>
-                                        <label class="form-check-label" for="aboutToggle">Enable About Section</label>
-                                    </div>
-
-                                    <div id="aboutSection">
-                                        <div class="mb-3">
-                                            <label class="form-label">Title</label>
-                                            <input type="text" class="form-control" id="aboutTitle"
-                                                placeholder="Enter About Title">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Heading</label>
-                                            <input type="text" class="form-control" id="aboutHeading"
-                                                placeholder="Enter About Heading">
-                                        </div>
-
-                                        <!-- Features List -->
-                                        <h5 class="mb-3">Features</h5>
-                                        <div id="featuresContainer"></div>
-
-                                        <!-- Add Feature Button -->
-                                        <button type="button" class="btn btn-success mb-3" id="addFeatureBtn">Add
-                                            Feature</button>
-                                    </div>
-
-                                    <!-- Services Section -->
-                                    <hr>
-                                    <h4 class="mb-3">Services Sections</h4>
-                                    <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input" type="checkbox" id="servicesToggle" checked>
-                                        <label class="form-check-label" for="serviceToggle">Enable Service
-                                            Section</label>
-                                    </div>
-
-                                    <div id="serviceSection">
-                                        <!-- Service Title -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Title (e.g., Amenities)</label>
-                                            <input type="text" id="serviceTitle" class="form-control" placeholder="Enter service title">
-                                        </div>
-
-                                        <!-- Service Heading -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Heading (e.g., What we offer)</label>
-                                            <input type="text" id="serviceHeading" class="form-control" placeholder="Enter service heading">
-                                        </div>
-
-                                        <!-- Background Image -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Background Image URL</label>
-                                            <input type="text" id="serviceBackground" class="form-control" placeholder="Enter image URL">
-                                        </div>
-
-                                        <!-- Description -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Description</label>
-                                            <textarea class="form-control" rows="3" id="serviceDescription"
-                                                placeholder="Enter service description"></textarea>
-                                        </div>
-                                        <!-- Description -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Features</label>
-                                            <input class="form-control" rows="3" id="serviceFeatures"
-                                                placeholder="Enter all features seperated by comas"></input>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Video URL</label>
-                                            <input type="file" id="serviceVideo" class="form-control" placeholder="Enter video URL">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Thumbnail URL</label>
-                                            <input type="file" id="serviceVideoThumbnail" class="form-control" placeholder="Enter thumbnail URL">
-                                        </div>
-
-                                        <!-- Service Cards -->
-                                        <h6>Service Cards</h6>
-                                        <div id="cardsContainer"></div>
-                                        <button type="button" class="btn btn-success mt-2" id="addCardBtn">Add
-                                            Card</button>
-
-                                        <!-- Video Section -->
-                                    </div>
-
-                                    <hr>
-
-
-
-                                    <!-- Pricing Section -->
-                                    <!-- Toggle Pricing Section -->
-                                    <h4 class="mb-3">Price Section</h4>
-                                    <div class="form-check form-switch mb-3">
-                                        <input class="form-check-input" type="checkbox" id="pricingToggle" checked>
-                                        <label class="form-check-label" for="pricingToggle">Enable Pricing
-                                            Section</label>
-                                    </div>
-
-                                    <div id="pricingSection">
-                                        <!-- Pricing Title -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Title (e.g., Single Occupancy Studios)</label>
-                                            <input type="text" id="priceTitle" class="form-control" placeholder="Enter pricing title">
-                                        </div>
-
-                                        <!-- Pricing Heading -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Heading</label>
-                                            <input type="text" id="priceHeading" class="form-control" placeholder="Enter pricing heading">
-                                        </div>
-
-                                        <!-- Pricing Subheading -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Subheading</label>
-                                            <input type="text" class="form-control" id="priceSubheading"
-                                                placeholder="Enter pricing subheading">
-                                        </div>
-
-                                        <!-- Price List -->
-                                        <h6>Pricing Plans</h6>
-                                        <div id="priceListContainer"></div>
-                                        <button type="button" class="btn btn-success mt-2" id="addPriceBtn">Add Pricing
-                                            Plan</button>
-
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100 my-2">Save Configuration</button>
-                                </form>
                             </div>
                         </div>
+
+                        <ul class="list-unstyled mb-0">
+                            <li class="list-inline-item mb-0">
+                                <a href="javascript:void(0)" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                    aria-controls="offcanvasRight">
+                                    <div class="btn btn-icon btn-soft-light"><i class="ti ti-settings"></i></div>
+                                </a>
+                            </li>
+
+                            <li class="list-inline-item mb-0 ms-1">
+                                <div class="dropdown dropdown-primary">
+                                    <button type="button" class="btn btn-icon btn-soft-light dropdown-toggle p-0"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                            class="ti ti-bell"></i></button>
+                                    <span
+                                        class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle">
+                                        <span class="visually-hidden">New alerts</span>
+                                    </span>
+
+                                    <div class="dropdown-menu dd-menu shadow rounded border-0 mt-3 p-0" data-simplebar
+                                        style="height: 320px; width: 290px;">
+                                        <div
+                                            class="d-flex align-items-center justify-content-between p-3 border-bottom">
+                                            <h6 class="mb-0 text-dark">Notifications</h6>
+                                            <span class="badge bg-soft-danger rounded-pill">3</span>
+                                        </div>
+                                        <div class="p-3">
+                                            <a href="#!" class="dropdown-item features feature-primary key-feature p-0">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="icon text-center rounded-circle me-2">
+                                                        <i class="ti ti-shopping-cart"></i>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="mb-0 text-dark title">Order Complete</h6>
+                                                        <small class="text-muted">15 min ago</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <a href="#!"
+                                                class="dropdown-item features feature-primary key-feature p-0 mt-3">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="images/client/04.jpg"
+                                                        class="avatar avatar-md-sm rounded-circle border shadow me-2"
+                                                        alt="">
+                                                    <div class="flex-1">
+                                                        <h6 class="mb-0 text-dark title"><span
+                                                                class="fw-bold">Message</span> from Luis</h6>
+                                                        <small class="text-muted">1 hour ago</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <a href="#!"
+                                                class="dropdown-item features feature-primary key-feature p-0 mt-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="icon text-center rounded-circle me-2">
+                                                        <i class="ti ti-currency-dollar"></i>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="mb-0 text-dark title"><span class="fw-bold">One
+                                                                Refund
+                                                                Request</span></h6>
+                                                        <small class="text-muted">2 hour ago</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <a href="#!"
+                                                class="dropdown-item features feature-primary key-feature p-0 mt-3">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="icon text-center rounded-circle me-2">
+                                                        <i class="ti ti-truck-delivery"></i>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="mb-0 text-dark title">Deliverd your Order</h6>
+                                                        <small class="text-muted">Yesterday</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+
+                                            <a href="#!"
+                                                class="dropdown-item features feature-primary key-feature p-0 mt-3">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="images/client/15.jpg"
+                                                        class="avatar avatar-md-sm rounded-circle border shadow me-2"
+                                                        alt="">
+                                                    <div class="flex-1">
+                                                        <h6 class="mb-0 text-dark title"><span
+                                                                class="fw-bold">Cally</span>
+                                                            started following you</h6>
+                                                        <small class="text-muted">2 days ago</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="list-inline-item mb-0 ms-1">
+                                <div class="dropdown dropdown-primary">
+                                    <button type="button" class="btn btn-soft-light dropdown-toggle p-0"
+                                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                                            src="images/client/05.jpg" class="avatar avatar-ex-small rounded"
+                                            alt=""></button>
+                                    <div class="dropdown-menu dd-menu dropdown-menu-end shadow border-0 mt-3 py-3"
+                                        style="min-width: 200px;">
+                                        <a class="dropdown-item d-flex align-items-center text-dark pb-3"
+                                            href="profile.html">
+                                            <img src="images/client/05.jpg"
+                                                class="avatar avatar-md-sm rounded-circle border shadow" alt="">
+                                            <div class="flex-1 ms-2">
+                                                <span class="d-block">Cristina Julia</span>
+                                                <small class="text-muted">UI / UX Designer</small>
+                                            </div>
+                                        </a>
+                                        <a class="dropdown-item text-dark" href="index.html"><span
+                                                class="mb-0 d-inline-block me-1"><i class="ti ti-home"></i></span>
+                                            Dashboard</a>
+                                        <a class="dropdown-item text-dark" href="profile.html"><span
+                                                class="mb-0 d-inline-block me-1"><i class="ti ti-settings"></i></span>
+                                            Profile</a>
+                                        <a class="dropdown-item text-dark" href="email.html"><span
+                                                class="mb-0 d-inline-block me-1"><i class="ti ti-mail"></i></span>
+                                            Email</a>
+                                        <div class="dropdown-divider border-top"></div>
+                                        <a class="dropdown-item text-dark" href="lock-screen.html"><span
+                                                class="mb-0 d-inline-block me-1"><i class="ti ti-lock"></i></span>
+                                            Lockscreen</a>
+                                        <a class="dropdown-item text-dark" href="login.html"><span
+                                                class="mb-0 d-inline-block me-1"><i class="ti ti-logout"></i></span>
+                                            Logout</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-
-
-
-
                 </div>
-            </div><!--end container-->
+                <!-- Top Header -->
 
-            <!-- Footer Start -->
-            <footer class="shadow py-3">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-                        <div class="col">
-                            <div class="text-sm-start text-center mx-md-2">
-                                <p class="mb-0 text-muted">©
-                                    <script>document.write(new Date().getFullYear())</script> Landrick. Design with <i
-                                        class="mdi mdi-heart text-danger"></i> by <a href="https://shreethemes.in/"
-                                        target="_blank" class="text-reset">Shreethemes</a>.
-                                </p>
+                <div class="container-fluid card">
+                    <div class="layout-specing">
+                        <div class="container mt-5">
+                            <h2 class="text-center mb-4">Website Configuration Form</h2>
+                            <div class="card shadow-lg">
+                                <div class="card-body">
+                                    <form id="pgForm">
+                                        <!-- Website Name -->
+                                        <div class="mb-3">
+                                            <label class="form-label">Website Name</label>
+                                            <input type="text" id="name" class="form-control"
+                                                placeholder="Enter website name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Select website theme Color</label>
+                                            <input type="color" id="websiteThemeColor"
+                                                class="form-control form-control-color">
+                                        </div>
+                                        <hr>
+
+
+                                        <!-- Home Page Description -->
+                                        <h4 class="mb-3">Home Page Details</h4>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Background Image</label>
+                                            <input type="file" id="homeBgImage" class="form-control" accept="image/*"
+                                                placeholder="Select the image for Background">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Nav bar Brand</label>
+                                            <input type="text" id="brandName" class="form-control"
+                                                placeholder="Enter main heading">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Contact Number </label>
+                                            <input type="number" id="contactNumber" class="form-control"
+                                                placeholder="Enter main heading">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Contact Number link</label>
+                                            <input type="text" id="contactLink" class="form-control"
+                                                placeholder="Enter main heading">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Button Content</label>
+                                            <input type="text" id="buttonText" class="form-control"
+                                                placeholder="Enter button text">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label">Button Link</label>
+                                            <input type="text" id="buttonLink" class="form-control"
+                                                placeholder="Enter button link">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Body Main Heading</label>
+                                            <input type="text" id="heading" class="form-control"
+                                                placeholder="Enter body heading">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label">Sub Heading</label>
+                                            <input type="text" id="subheading" class="form-control"
+                                                placeholder="Enter sub heading">
+                                        </div>
+
+                                        <hr>
+
+                                        <!-- Section Toggles -->
+
+                                        <!-- About Section -->
+
+                                        <h4 class="mb-3">About Section</h4>
+
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input section-toggle" type="checkbox"
+                                                id="aboutToggle" checked>
+                                            <label class="form-check-label" for="aboutToggle">Enable About
+                                                Section</label>
+                                        </div>
+
+                                        <div id="aboutSection">
+                                            <div class="mb-3">
+                                                <label class="form-label">Title</label>
+                                                <input type="text" class="form-control" id="aboutTitle"
+                                                    placeholder="Enter About Title">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Heading</label>
+                                                <input type="text" class="form-control" id="aboutHeading"
+                                                    placeholder="Enter About Heading">
+                                            </div>
+
+                                            <!-- Features List -->
+                                            <h5 class="mb-3">Features</h5>
+                                            <div id="featuresContainer"></div>
+
+                                            <!-- Add Feature Button -->
+                                            <button type="button" class="btn btn-success mb-3" id="addFeatureBtn">Add
+                                                Feature</button>
+                                        </div>
+
+                                        <!-- Services Section -->
+                                        <hr>
+                                        <h4 class="mb-3">Services Sections</h4>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" id="servicesToggle" checked>
+                                            <label class="form-check-label" for="serviceToggle">Enable Service
+                                                Section</label>
+                                        </div>
+
+                                        <div id="serviceSection">
+                                            <!-- Service Title -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Title (e.g., Amenities)</label>
+                                                <input type="text" id="serviceTitle" class="form-control"
+                                                    placeholder="Enter service title">
+                                            </div>
+
+                                            <!-- Service Heading -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Heading (e.g., What we offer)</label>
+                                                <input type="text" id="serviceHeading" class="form-control"
+                                                    placeholder="Enter service heading">
+                                            </div>
+
+                                            <!-- Background Image -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Background Image URL</label>
+                                                <input type="file" accept="image/*" id="serviceBackground"
+                                                    class="form-control" placeholder="Enter image URL">
+                                            </div>
+
+                                            <!-- Description -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Description</label>
+                                                <textarea class="form-control" rows="3" id="serviceDescription"
+                                                    placeholder="Enter service description"></textarea>
+                                            </div>
+                                            <!-- Description -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Features</label>
+                                                <input class="form-control" rows="3" id="serviceFeatures"
+                                                    placeholder="Enter all features seperated by comas"></input>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Video URL</label>
+                                                <input type="file" accept="video/*" id="serviceVideo"
+                                                    class="form-control" placeholder="Enter video URL">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Thumbnail URL</label>
+                                                <input type="file" accept="image/*" id="serviceVideoThumbnail"
+                                                    class="form-control" placeholder="Enter thumbnail URL">
+                                            </div>
+
+                                            <!-- Service Cards -->
+                                            <h6>Service Cards</h6>
+                                            <div id="cardsContainer"></div>
+                                            <button type="button" class="btn btn-success mt-2" id="addCardBtn">Add
+                                                Card</button>
+
+                                            <!-- Video Section -->
+                                        </div>
+
+                                        <hr>
+
+
+
+                                        <!-- Pricing Section -->
+                                        <!-- Toggle Pricing Section -->
+                                        <h4 class="mb-3">Price Section</h4>
+                                        <div class="form-check form-switch mb-3">
+                                            <input class="form-check-input" type="checkbox" id="pricingToggle" checked>
+                                            <label class="form-check-label" for="pricingToggle">Enable Pricing
+                                                Section</label>
+                                        </div>
+
+                                        <div id="pricingSection">
+                                            <!-- Pricing Title -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Title (e.g., Single Occupancy Studios)</label>
+                                                <input type="text" id="priceTitle" class="form-control"
+                                                    placeholder="Enter pricing title">
+                                            </div>
+
+                                            <!-- Pricing Heading -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Heading</label>
+                                                <input type="text" id="priceHeading" class="form-control"
+                                                    placeholder="Enter pricing heading">
+                                            </div>
+
+                                            <!-- Pricing Subheading -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Subheading</label>
+                                                <input type="text" class="form-control" id="priceSubheading"
+                                                    placeholder="Enter pricing subheading">
+                                            </div>
+
+                                            <!-- Price List -->
+                                            <h6>Pricing Plans</h6>
+                                            <div id="priceListContainer"></div>
+                                            <button type="button" class="btn btn-success mt-2" id="addPriceBtn">Add
+                                                Pricing
+                                                Plan</button>
+
+                                        </div>
+
+                                        <hr>
+
+                                        <h4 class="mb-3">Footer Section</h4>
+
+                                        <!-- Footer section -->
+                                        <div id="footerSection">
+                                            <!-- Footer Heading -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Heading</label>
+                                                <input type="text" id="footerHeading" class="form-control"
+                                                    placeholder="Enter pricing heading">
+                                            </div>
+
+                                            <!-- Footer Subheading -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Subheading</label>
+                                                <input type="text" class="form-control" id="footerSubheading"
+                                                    placeholder="Enter pricing subheading">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" class="form-control" id="address"
+                                                    placeholder="Enter address">
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-2">
+                                                        <label class="form-label">Enter Phone</label>
+                                                        <input type="text" id="footerPhoneNumber" class="form-control"
+                                                            placeholder="Enter phone number">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-2">
+                                                        <label class="form-label">Email</label>
+                                                        <input type="email" id="footerEmail" class="form-control"
+                                                            placeholder="Enter email">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 mb-2">
+                                                    <label class="form-label">Instagram</label>
+                                                    <input type="text" id="linkInstagram" class="form-control"
+                                                        placeholder="Enter Instagram link">
+                                                </div>
+                                                <div class="col-md-4 mb-2">
+                                                    <label class="form-label">Facebook</label>
+                                                    <input type="text" id="linkFacebook" class="form-control"
+                                                        placeholder="Enter Facebook link">
+                                                </div>
+                                                <div class="col-md-4 mb-2">
+                                                    <label class="form-label">Twitter (X)</label>
+                                                    <input type="text" id="linkX" class="form-control"
+                                                        placeholder="Enter Twitter link">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100 my-2">Save
+                                            Configuration</button>
+                                    </form>
+                                </div>
                             </div>
-                        </div><!--end col-->
-                    </div><!--end row-->
+                        </div>
+
+                    </div>
                 </div><!--end container-->
-            </footer><!--end footer-->
-            <!-- End -->
-        </main>
-        <!--End page-content" -->
+
+                <!-- Footer Start -->
+                <footer class="shadow py-3">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="text-sm-start text-center mx-md-2">
+                                    <p class="mb-0 text-muted">©
+                                        <script>document.write(new Date().getFullYear())</script> Landrick. Design with
+                                        <i class="mdi mdi-heart text-danger"></i> by <a href="https://shreethemes.in/"
+                                            target="_blank" class="text-reset">Shreethemes</a>.
+                                    </p>
+                                </div>
+                            </div><!--end col-->
+                        </div><!--end row-->
+                    </div><!--end container-->
+                </footer><!--end footer-->
+                <!-- End -->
+            </main>
+            <!--End page-content" -->
     </div>
     <!-- page-wrapper -->
 
@@ -532,4 +610,5 @@
     <script src="js/plugins.init.js"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>

@@ -74,6 +74,23 @@ function getClosest(elem, selector) {
 
 };
 
+function deleteWebsite(websiteId) {
+    if (confirm("Are you sure you want to delete this website?")) {
+        fetch(`/websites/${websiteId}`, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if (response.status === 200) {
+                    alert("Website deleted successfully!");
+                    window.location.reload(); // Refresh the page after deletion
+                } else {
+                    alert("Failed to delete website.");
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    }
+}
+
 function activateMenu() {
     var menuItems = document.getElementsByClassName("sub-menu-item");
     if (menuItems) {

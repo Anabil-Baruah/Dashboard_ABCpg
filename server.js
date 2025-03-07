@@ -22,6 +22,10 @@ connectDB();
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use((req, res, next) => {
+  res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
+  next();
+});
 app.use('/', express.static(__dirname + '/public'));
 app.use('/websites/add-website', express.static(__dirname + '/public'));
 app.use('/pg', express.static(__dirname + '/public'));

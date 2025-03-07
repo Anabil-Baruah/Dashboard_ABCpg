@@ -1,34 +1,31 @@
 function extractFeatures() {
     let featuresContainer = document.getElementById("featuresContainer");
 
-    // Check if featuresContainer has inner content (i.e., at least one feature card)
-    if (!featuresContainer || featuresContainer.innerHTML.trim() === "") {
-        console.log("No features added.");
+    // Ensure at least one feature exists
+    if (!featuresContainer || featuresContainer.children.length === 0) {
+        // console.log("No features added.");
         return [];
     }
 
     let featuresArray = [];
 
     // Select all dynamically added feature cards
-    document.querySelectorAll(".feature-card").forEach(featureCard => {
-        let iconUrl = featureCard.querySelector("#featureIcon").value.trim();
-        let bgColor = featureCard.querySelector("#featureBgColor").value;
+    document.querySelectorAll(".feature-card").forEach((featureCard, index) => {
+        // let iconInput = featureCard.querySelector("#featureIcon");
         let title = featureCard.querySelector("#featureTitle").value.trim();
         let description = featureCard.querySelector("#featureDescription").value.trim();
 
-        featuresArray.push({
-            icon: {
-                url: iconUrl || "", // Fallback to empty string if no input
-                backgroundColor: bgColor || "#FFFFFF" // Default color if empty
-            },
-            title: title || "Untitled Feature",
+        let featureData = {
+            title: title || `Feature ${index + 1}`,
             description: description || "No description provided"
-        });
+        };
+
+        featuresArray.push(featureData);
     });
 
-    console.log(featuresArray); // Output the array
     return featuresArray;
 }
+
 
 function extractServiceCards() {
     let cardsContainer = document.getElementById("cardsContainer");
@@ -42,21 +39,15 @@ function extractServiceCards() {
     let serviceCardsArray = [];
 
     // Select all dynamically added service cards
-    document.querySelectorAll("#cardsContainer .card").forEach(card => {
-        let iconUrl = card.querySelector("#cardIcon").value.trim();
-        let bgColor = card.querySelector("#cardBgColor").value;
-        let title = card.querySelector("#cardTitle").value.trim();
+    document.querySelectorAll("#cardsContainer .card").forEach((card, index) => {
+        // let iconUrl = card.querySelector("#cardIcon").files[0]; // File input
+        let title = card.querySelector("#cardTitle").value.trim() || `Service ${index + 1}`;
 
         serviceCardsArray.push({
-            icon: {
-                url: iconUrl || "", // Fallback to empty string if no input
-                backgroundColor: bgColor || "#FFFFFF" // Default color if empty
-            },
-            title: title || "Untitled Service"
+            title: title
         });
     });
 
-    console.log(serviceCardsArray); // Output the array
     return serviceCardsArray;
 }
 
@@ -72,32 +63,21 @@ function extractPricingPlans() {
     let pricingPlansArray = [];
 
     // Select all dynamically added pricing plans
-    document.querySelectorAll("#priceListContainer .card").forEach(plan => {
+    document.querySelectorAll("#priceListContainer .card").forEach((plan, index) => {
         let planTitle = plan.querySelector("#pricePlanTitle").value.trim();
         let priceValue = plan.querySelector("#priceValue").value.trim();
         let priceCurrency = plan.querySelector("#priceCurrency").value;
         let priceDuration = plan.querySelector("#priceDuration").value;
-        let iconUrl = plan.querySelector("#priceIconUrl").value.trim();
-        let bgColor = plan.querySelector("#priceBgColor").value;
+        // let iconUrl = plan.querySelector("#priceIconUrl").files[0];
+        // let bgColor = plan.querySelector("#priceBgColor").value;
 
         // Extracting Features for this pricing plan
         let featuresArray = [];
-        let featuresContainer = plan.querySelector(`#featuresContainer${planTitle}`);
+        let featuresContainer = plan.querySelector(`#featuresContainer${index + 1}`);
         if (featuresContainer) {
-            featuresContainer.querySelectorAll(".feature-card").forEach(feature => {
-                let featureTitle = feature.querySelector("#featureTitle").value.trim();
-                let featureDescription = feature.querySelector("#featureDescription").value.trim();
-                let featureIcon = feature.querySelector("#featureIcon").value.trim();
-                let featureBgColor = feature.querySelector("#featureBgColor").value;
-
-                featuresArray.push({
-                    icon: {
-                        url: featureIcon || "",
-                        backgroundColor: featureBgColor || "#FFFFFF"
-                    },
-                    title: featureTitle || "Untitled Feature",
-                    description: featureDescription || ""
-                });
+            featuresContainer.querySelectorAll(".input-group").forEach(feature => {
+                let featureTitle = feature.querySelector("#priceFeature")?.value.trim() || "Untitled Feature";
+                featuresArray.push(featureTitle);
             });
         }
 
@@ -109,117 +89,118 @@ function extractPricingPlans() {
                 duration: priceDuration
             },
             icon: {
-                url: iconUrl || "",
-                backgroundColor: bgColor || "#FFFFFF"
+                url: "",
+                backgroundColor: "#FFFFFF"
             },
             features: featuresArray
         });
     });
 
-    console.log(pricingPlansArray); // Output the array
     return pricingPlansArray;
 }
 
 
 
 document.getElementById("pgForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form from reloading the page
+    event.preventDefault(); // Prevent default form submission
 
-    // Get form values
-    const name = document.getElementById("name").value;
-    const brandName = document.getElementById("brandName").value;
-    const contactNumber = document.getElementById("contactNumber").value;
-    const contactLink = document.getElementById("contactLink").value;
-    const heading = document.getElementById("heading").value;
-    const subheading = document.getElementById("subheading").value;
-    const buttonText = document.getElementById("buttonText").value;
-    const buttonLink = document.getElementById("buttonLink").value;
-    const buttonColor = document.getElementById("buttonColor").value;
-    const aboutToggle = document.getElementById("aboutToggle").checked;
-    const servicesToggle = document.getElementById("servicesToggle").checked;
-    const pricingToggle = document.getElementById("pricingToggle").checked;
+    const formData = new FormData(); // Create FormData object
 
-    //about values
-    const aboutTitle = document.getElementById("aboutTitle").value;
-    const aboutHeading = document.getElementById("aboutHeading").value;
-    let extractedFeatures = extractFeatures();
+    // Append form fields
+    formData.append("name", document.getElementById("name").value);
+    formData.append("websiteThemeColor", document.getElementById("websiteThemeColor").value);
+    formData.append("brandName", document.getElementById("brandName").value);
+    formData.append("contactNumber", document.getElementById("contactNumber").value);
+    formData.append("contactLink", document.getElementById("contactLink").value);
+    formData.append("heading", document.getElementById("heading").value);
+    formData.append("subheading", document.getElementById("subheading").value);
+    formData.append("buttonText", document.getElementById("buttonText").value);
+    formData.append("buttonLink", document.getElementById("buttonLink").value);
+    formData.append("aboutToggle", document.getElementById("aboutToggle").checked);
+    formData.append("servicesToggle", document.getElementById("servicesToggle").checked);
+    formData.append("pricingToggle", document.getElementById("pricingToggle").checked);
 
-    //service values
-    const serviceTitle = document.getElementById("serviceTitle").value;
-    const serviceHeading = document.getElementById("serviceHeading").value;
-    const serviceDescription = document.getElementById("serviceDescription").value;
-    const serviceBackground = document.getElementById("serviceBackground").value;
-    const serviceFeatures = document.getElementById("serviceFeatures").value.split(",").map(feature => feature.trim());
-    const serviceVideo = ""
-    const serviceVideoThumbnail = ""
-    let serviceCards = extractServiceCards();
+    // Append the home background image file using name="homeBgImage"
+    const homeBgImage = document.getElementById("homeBgImage")?.files[0];
+    if (homeBgImage) {
+        formData.append("homeBgImage", homeBgImage);
+    }
 
-    //priceValues
-    const priceTitle = document.getElementById("priceTitle").value;
-    const priceHeading = document.getElementById("priceHeading").value;
-    const priceSubheading = document.getElementById("priceSubheading").value;
-    const pricingPlansArray = extractPricingPlans();
+    // Append About Section
+    formData.append("aboutTitle", document.getElementById("aboutTitle").value);
+    formData.append("aboutHeading", document.getElementById("aboutHeading").value);
+    formData.append("featureArray", JSON.stringify(extractFeatures()));
+
+    // Extract and append features (including image files)
+    // let features = extractFeatures(formData);
+    // console.log("Extracted Features:", features);
+    // features.forEach((feature, index) => {
+    //     formData.append(`featureTitles[${index}]`, feature.title); // Append title
+    //     formData.append(`featureDescs[${index}]`, feature.description); // Append description
+    // });
+    // formData.append("extractedFeatures", JSON.stringify(features)); // Convert array to JSON
+
+    // Append Service Section
+    formData.append("serviceTitle", document.getElementById("serviceTitle").value);
+    formData.append("serviceHeading", document.getElementById("serviceHeading").value);
+    formData.append("serviceDescription", document.getElementById("serviceDescription").value);
+    formData.append("serviceBackground", document.getElementById("serviceBackground").files[0]);
+    formData.append("serviceFeatures", JSON.stringify(
+        document.getElementById("serviceFeatures").value.split(",").map(feature => feature.trim())
+    )); // Convert array to JSON
+    const serviceVideoThumbnail = document.getElementById("serviceVideoThumbnail").files[0];
+    const serviceVideo = document.getElementById("serviceVideo").files[0];
+
+    if (serviceVideoThumbnail && serviceVideo) {
+        formData.append("serviceVideoThumbnail", serviceVideoThumbnail);
+        formData.append("serviceVideo", serviceVideo);
+    }
+    // formData.append("serviceCards", JSON.stringify(extractServiceCards())); // Convert array to JSON
+    // Extract service cards data
+    const serviceCards = extractServiceCards();
+    serviceCards.forEach((card, i) => {
+        formData.append(`serviceTitles[${i}]`, card.title);
+    });
 
 
-    // Structure the data as required
-    const formData = {
-        name: name,
-        homeData: {
-            navbar: {
-                brandName: brandName,
-                contact: {
-                    number: contactNumber,
-                    status: true,
-                    link: contactLink
-                },
-                about: { status: aboutToggle },
-                services: { status: servicesToggle },
-                team: { status: true },
-                pricing: { status: pricingToggle },
-                blog: { status: true }
-            },
-            content: {
-                heading: heading,
-                subheading: subheading,
-                buttonColor: buttonColor,
-                buttonText: buttonText,
-                buttonLink: buttonLink
-            }
-        },
-        aboutData: {
-            title: aboutTitle,
-            heading: aboutHeading,
-            features: extractedFeatures
-        },
-        servicesData: {
-            title: serviceTitle,
-            heading: serviceHeading,
-            backgroundImage: serviceBackground,
-            description: serviceDescription,
-            features: serviceFeatures,
-            card: serviceCards,
-            video: {
-                url: serviceVideo,
-                thumbnail: serviceVideoThumbnail
-            }
-        },
-        pricingData: {
-            title: priceTitle,
-            heading: priceHeading,
-            subheading: priceSubheading,
-            pricingPlansArray: pricingPlansArray
-        }
-    };
+    // Append Pricing Section
+    formData.append("priceTitle", document.getElementById("priceTitle").value);
+    formData.append("priceHeading", document.getElementById("priceHeading").value);
+    formData.append("priceSubheading", document.getElementById("priceSubheading").value);
+    formData.append("pricingPlansArray", JSON.stringify(extractPricingPlans())); // Convert array to JSON
 
-    console.log("Data to be sent:", formData);
+    const pricePlans = extractPricingPlans();
 
-    // Send data to backend (Replace 'your-api-endpoint' with actual URL)
+    pricePlans.forEach((plan, i) => {
+        formData.append("pricePlanTitles", plan.title);
+        formData.append("priceValues", plan.price.value);
+        formData.append("priceCurrencies", plan.price.currency);
+        formData.append("priceDurations", plan.price.duration);
+
+        plan.features.forEach((feature, j) => {
+            formData.append(`priceFeatures[${i}][${j}]`, feature);
+        });
+    });
+
+    //Append footer section
+    formData.append("footerHeading", document.getElementById("footerHeading").value);
+    formData.append("footerSubheading", document.getElementById("footerSubheading").value);
+    formData.append("address", document.getElementById("address").value);
+    formData.append("footerPhoneNumber", document.getElementById("footerPhoneNumber").value);
+    formData.append("footerEmail", document.getElementById("footerEmail").value);
+    formData.append("linkInstagram", document.getElementById("linkInstagram").value);
+    formData.append("linkFacebook", document.getElementById("linkFacebook").value);
+    formData.append("linkX", document.getElementById("linkX").value);
+
+    // console.log("FormData Entries:");
+    // for (let [key, value] of formData.entries()) {
+    //     console.log(`${key}:`, value);
+    // }
+
+    // Send data to backend
     fetch("http://localhost:4000/websites", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formData)
+        body: formData // Send FormData object directly
     })
         .then(response => response.json())
         .then(data => {
@@ -231,3 +212,4 @@ document.getElementById("pgForm").addEventListener("submit", function (event) {
             alert("Error submitting data.");
         });
 });
+

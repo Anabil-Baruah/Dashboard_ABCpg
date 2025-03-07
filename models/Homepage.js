@@ -3,11 +3,10 @@ const mongoose = require("mongoose");
 const NavbarSchema = new mongoose.Schema({
   brandName: {
     type: String,
-    required: true,
     default: "ABC PG",
   },
   contact: {
-    number: { type: String, required: true },
+    number: { type: String  },
     status: { type: Boolean, default: true },
     link: { type: String },
   },
@@ -19,9 +18,9 @@ const NavbarSchema = new mongoose.Schema({
 });
 
 const PageContentSchema = new mongoose.Schema({
-  heading: { type: String, required: true },
+  heading: { type: String},
+  homeBgImage: { type: String },
   subheading: { type: String },
-  buttonColor: { type: String},
   buttonText: { type: String },
   buttonLink: { type: String },
 });
