@@ -41,7 +41,7 @@ app.use('/pg', pg);
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views')); // Ensures Express looks inside 'views'
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
