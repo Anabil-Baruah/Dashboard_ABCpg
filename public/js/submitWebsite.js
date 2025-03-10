@@ -197,7 +197,7 @@ document.getElementById("pgForm").addEventListener("submit", function (event) {
     // }
 
     // Send data to backend
-    fetch("http://localhost:4000/websites", {
+    fetch("/websites", {
         method: "POST",
         body: formData // Send FormData object directly
     })
