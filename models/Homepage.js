@@ -5,8 +5,12 @@ const NavbarSchema = new mongoose.Schema({
     type: String,
     default: "ABC PG",
   },
+  navBarImg: {
+    type: String,
+    default: "",
+  },
   contact: {
-    number: { type: String  },
+    number: { type: String },
     status: { type: Boolean, default: true },
     link: { type: String },
   },
@@ -18,8 +22,7 @@ const NavbarSchema = new mongoose.Schema({
 });
 
 const PageContentSchema = new mongoose.Schema({
-  heading: { type: String},
-  homeBgImage: { type: String },
+  heading: { type: String },
   subheading: { type: String },
   buttonText: { type: String },
   buttonLink: { type: String },

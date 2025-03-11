@@ -67,8 +67,6 @@ function extractPricingPlans() {
         let priceValue = plan.querySelector("#priceValue").value.trim();
         let priceCurrency = plan.querySelector("#priceCurrency").value;
         let priceDuration = plan.querySelector("#priceDuration").value;
-        // let iconUrl = plan.querySelector("#priceIconUrl").files[0];
-        // let bgColor = plan.querySelector("#priceBgColor").value;
 
         // Extracting Features for this pricing plan
         let featuresArray = [];
@@ -109,6 +107,7 @@ document.getElementById("pgForm").addEventListener("submit", function (event) {
     formData.append("name", document.getElementById("name").value);
     formData.append("websiteThemeColor", document.getElementById("websiteThemeColor").value);
     formData.append("brandName", document.getElementById("brandName").value);
+    formData.append("navImage", document.getElementById("navImage")?.files[0]);
     formData.append("contactNumber", document.getElementById("contactNumber").value);
     formData.append("contactLink", document.getElementById("contactLink").value);
     formData.append("heading", document.getElementById("heading").value);
@@ -118,12 +117,6 @@ document.getElementById("pgForm").addEventListener("submit", function (event) {
     formData.append("aboutToggle", document.getElementById("aboutToggle").checked);
     formData.append("servicesToggle", document.getElementById("servicesToggle").checked);
     formData.append("pricingToggle", document.getElementById("pricingToggle").checked);
-
-    // Append the home background image file using name="homeBgImage"
-    const homeBgImage = document.getElementById("homeBgImage")?.files[0];
-    if (homeBgImage) {
-        formData.append("homeBgImage", homeBgImage);
-    }
 
     // Append About Section
     formData.append("aboutTitle", document.getElementById("aboutTitle").value);
@@ -139,11 +132,19 @@ document.getElementById("pgForm").addEventListener("submit", function (event) {
     // });
     // formData.append("extractedFeatures", JSON.stringify(features)); // Convert array to JSON
 
+
+    //Append Teams Section
+    formData.append("teamHeading", document.getElementById("teamHeading").value);
+    const teamImages = document.getElementById("teamImages").files;
+    // Append each selected file to FormData
+    for (let i = 0; i < teamImages.length; i++) {
+        formData.append("teamImages", teamImages[i]);  // 'images' should match Multer field name
+    }
+
     // Append Service Section
     formData.append("serviceTitle", document.getElementById("serviceTitle").value);
     formData.append("serviceHeading", document.getElementById("serviceHeading").value);
     formData.append("serviceDescription", document.getElementById("serviceDescription").value);
-    formData.append("serviceBackground", document.getElementById("serviceBackground").files[0]);
     formData.append("serviceFeatures", JSON.stringify(
         document.getElementById("serviceFeatures").value.split(",").map(feature => feature.trim())
     )); // Convert array to JSON

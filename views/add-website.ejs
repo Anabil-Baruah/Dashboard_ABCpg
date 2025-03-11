@@ -236,40 +236,58 @@
 
                                         <!-- Home Page Description -->
                                         <h4 class="mb-3">Home Page Details</h4>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Background Image</label>
-                                            <input type="file" id="homeBgImage" class="form-control" accept="image/*"
-                                                placeholder="Select the image for Background">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nav bar Brand</label>
+                                                    <input type="text" id="brandName" class="form-control"
+                                                        placeholder="Enter main heading">
+                                                    <small class="text-muted">You can enter a brand name or upload an
+                                                        image.</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Nav bar Image</label>
+                                                    <input type="file" accept="image/*" id="navImage"
+                                                        class="form-control" placeholder="Enter main the navbar image">
+                                                    <small class="text-muted">You can enter a brand name or upload an
+                                                        image.</small>
+                                                </div>
+                                            </div>
                                         </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Nav bar Brand</label>
-                                            <input type="text" id="brandName" class="form-control"
-                                                placeholder="Enter main heading">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Contact Number </label>
+                                                    <input type="number" id="contactNumber" class="form-control"
+                                                        placeholder="Enter main heading">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Contact Number link</label>
+                                                    <input type="text" id="contactLink" class="form-control"
+                                                        placeholder="Enter main heading">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Contact Number </label>
-                                            <input type="number" id="contactNumber" class="form-control"
-                                                placeholder="Enter main heading">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button Content</label>
+                                                    <input type="text" id="buttonText" class="form-control"
+                                                        placeholder="Enter button text">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 mb-2">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Button Link</label>
+                                                    <input type="text" id="buttonLink" class="form-control"
+                                                        placeholder="Enter button link">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Contact Number link</label>
-                                            <input type="text" id="contactLink" class="form-control"
-                                                placeholder="Enter main heading">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Button Content</label>
-                                            <input type="text" id="buttonText" class="form-control"
-                                                placeholder="Enter button text">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Button Link</label>
-                                            <input type="text" id="buttonLink" class="form-control"
-                                                placeholder="Enter button link">
-                                        </div>
-
                                         <div class="mb-3">
                                             <label class="form-label">Body Main Heading</label>
                                             <input type="text" id="heading" class="form-control"
@@ -289,7 +307,6 @@
                                         <!-- About Section -->
 
                                         <h4 class="mb-3">About Section</h4>
-
                                         <div class="form-check form-switch mb-3">
                                             <input class="form-check-input section-toggle" type="checkbox"
                                                 id="aboutToggle" checked>
@@ -318,9 +335,28 @@
                                             <button type="button" class="btn btn-success mb-3" id="addFeatureBtn">Add
                                                 Feature</button>
                                         </div>
-
-                                        <!-- Services Section -->
                                         <hr>
+
+                                        <div id="teamsSection">
+                                            <h4 class="mb-3">Teams Section</h4>
+
+                                            <!-- Service Heading -->
+                                            <div class="mb-3">
+                                                <label class="form-label">Heading</label>
+                                                <input type="text" id="teamHeading" class="form-control"
+                                                    placeholder="Enter service heading">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Insert the images</label>
+                                                <input type="file" multiple accept="image/*" id="teamImages"
+                                                    class="form-control" placeholder="Enter thumbnail URL">
+                                            </div>
+
+                                        </div>
+
+                                        <hr>
+                                        <!-- Services Section -->
                                         <h4 class="mb-3">Services Sections</h4>
                                         <div class="form-check form-switch mb-3">
                                             <input class="form-check-input" type="checkbox" id="servicesToggle" checked>
@@ -328,7 +364,7 @@
                                                 Section</label>
                                         </div>
 
-                                        <div id="serviceSection">
+                                        <div id="serviceSection" class="mb-3">
                                             <!-- Service Title -->
                                             <div class="mb-3">
                                                 <label class="form-label">Title (e.g., Amenities)</label>
@@ -343,12 +379,6 @@
                                                     placeholder="Enter service heading">
                                             </div>
 
-                                            <!-- Background Image -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Background Image URL</label>
-                                                <input type="file" accept="image/*" id="serviceBackground"
-                                                    class="form-control" placeholder="Enter image URL">
-                                            </div>
 
                                             <!-- Description -->
                                             <div class="mb-3">
@@ -362,24 +392,26 @@
                                                 <input class="form-control" rows="3" id="serviceFeatures"
                                                     placeholder="Enter all features seperated by comas"></input>
                                             </div>
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Video URL</label>
-                                                <input type="file" accept="video/*" id="serviceVideo"
-                                                    class="form-control" placeholder="Enter video URL">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Video URL</label>
+                                                        <input type="file" accept="video/*" id="serviceVideo"
+                                                            class="form-control" placeholder="Enter video URL">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Thumbnail URL</label>
+                                                        <input type="file" accept="image/*" id="serviceVideoThumbnail"
+                                                            class="form-control" placeholder="Enter thumbnail URL">
+                                                    </div>
+                                                </div>
                                             </div>
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Thumbnail URL</label>
-                                                <input type="file" accept="image/*" id="serviceVideoThumbnail"
-                                                    class="form-control" placeholder="Enter thumbnail URL">
-                                            </div>
-
                                             <!-- Service Cards -->
                                             <h6>Service Cards</h6>
                                             <div id="cardsContainer"></div>
-                                            <button type="button" class="btn btn-success mt-2" id="addCardBtn">Add
-                                                Card</button>
+                                            <button type="button" class="btn btn-success mt-2" id="addCardBtn">Add Card</button>
 
                                             <!-- Video Section -->
                                         </div>
@@ -397,10 +429,11 @@
                                                 Section</label>
                                         </div>
 
-                                        <div id="pricingSection">
+                                        <div id="pricingSection" class="mb-3">
                                             <!-- Pricing Title -->
                                             <div class="mb-3">
-                                                <label class="form-label">Title (e.g., Single Occupancy Studios)</label>
+                                                <label class="form-label">Title (e.g., Single Occupancy
+                                                    Studios)</label>
                                                 <input type="text" id="priceTitle" class="form-control"
                                                     placeholder="Enter pricing title">
                                             </div>
@@ -423,8 +456,7 @@
                                             <h6>Pricing Plans</h6>
                                             <div id="priceListContainer"></div>
                                             <button type="button" class="btn btn-success mt-2" id="addPriceBtn">Add
-                                                Pricing
-                                                Plan</button>
+                                                Pricing Plan</button>
 
                                         </div>
 
@@ -486,8 +518,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-primary w-100 my-2">Save
-                                            Configuration</button>
+                                        <button type="submit" class="btn btn-primary w-100 my-2">Save Configuration</button>
                                     </form>
                                 </div>
                             </div>

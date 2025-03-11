@@ -6,7 +6,10 @@ const Pricing = require("../models/Pricing");
 const About = require("../models/About");
 const Service = require("../models/Service");
 const Footer = require("../models/Footer");
+const Team = require("../models/Team");
 const dotenv = require("dotenv");
+const fs = require("fs");
+const path = require("path");
 
 
 dotenv.config();
@@ -40,6 +43,7 @@ router.get("/:id", async (req, res) => {
       .populate("home") // Populating homepage details
       .populate("pricing") // Populating pricing page details
       .populate("about") // Populating about page details
+      .populate("team") // Populating team page details
       .populate("service") // Populating service page details
       .populate("footer") // Populating footer details
       .exec();
@@ -47,6 +51,7 @@ router.get("/:id", async (req, res) => {
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
+    console.log(website, "website")
     res.json(website);
   } catch (error) {
     console.error("Error fetching website:", error);
@@ -62,13 +67,12 @@ router.get("/:id", async (req, res) => {
 router.post(
   "/",
   upload.fields([
-    { name: "homeBgImage" },
-    { name: "serviceBackground" },
     { name: "serviceVideoThumbnail" },
     { name: "serviceVideo" },
     { name: "featuresImages" }, // Allow multiple feature images
     { name: "serviceCardImages" },
-    { name: "priceIcons" }
+    { name: "navImage" },
+    { name: "teamImages", maxCount: 20 }
   ]),
   async (req, res) => {
     console.log(req.files, "req file")
@@ -82,14 +86,12 @@ router.post(
         heading, subheading, buttonText, buttonLink,
         aboutToggle, servicesToggle, pricingToggle,
         aboutTitle, aboutHeading, featureArray, pricingPlansArray,
-        serviceTitle, serviceHeading, serviceDescription, serviceFeatures,
+        serviceTitle, serviceHeading, serviceDescription, serviceFeatures, teamHeading,
         priceTitle, priceHeading, priceSubheading, footerHeading, footerSubheading,
         address, footerPhoneNumber, footerEmail, linkInstagram, linkFacebook, linkX
       } = req.body;
 
       // Extract uploaded image filenames
-      const homeBgImage = req.files["homeBgImage"] ? req.files["homeBgImage"][0].filename : null;
-      const serviceBackground = req.files["serviceBackground"] ? req.files["serviceBackground"][0].filename : null;
       const serviceVideoThumbnail = req.files["serviceVideoThumbnail"] ? req.files["serviceVideoThumbnail"][0].filename : null;
       const serviceVideo = req.files["serviceVideo"] ? req.files["serviceVideo"][0].filename : null;
 
@@ -101,42 +103,22 @@ router.post(
       // const parsedServiceCards = JSON.parse(serviceCards || "[]");
       const parsedPricingPlansArray = JSON.parse(pricingPlansArray || "[]");
 
-      // Assign uploaded feature images to the correct features
-      // const features = req.files["featuresImages"]
-      //   ? req.files["featuresImages"].map((file, index) => ({
-      //     title: req.body.featureTitles[index] || `Feature ${index + 1}`,
-      //     description: req.body.featureDescs[index] || "No description provided",
+
+      // const serviceCards = req.files["serviceCardImages"]
+      //   ? req.files["serviceCardImages"].map((file, index) => ({
+      //     title: req.body.serviceTitles[index] || `Service ${index + 1}`,
       //   }))
       //   : [];
 
-      const serviceCards = req.files["serviceCardImages"]
-        ? req.files["serviceCardImages"].map((file, index) => ({
-          title: req.body.serviceTitles[index] || `Service ${index + 1}`,
-        }))
-        : [];
-
-
-      // const pricePlans = req.files["priceIcons"]
-      //   ? req.files["priceIcons"].map((file, index) => ({
-      //     title: req.body.pricePlanTitles[index] || `Plan ${index + 1}`,
-      //     price: {
-      //       value: Number(req.body.priceValues[index]) || 0,
-      //       currency: req.body.priceCurrencies[index] || "₹",
-      //       duration: req.body.priceDurations[index] || "mo",
-      //     },
-      //     icon: {
-      //       url: `${file.filename}`,
-      //       backgroundColor: req.body.priceBgColors[index] || "#FFFFFF",
-      //     },
-      //     features: req.body.priceFeatures ? req.body.priceFeatures[index] || [] : [],
-      //   }))
-      //   : [];
-
+      const navBarImg = req.files["navImage"] ? req.files["navImage"][0].filename : null;
+      const serviceCards = req.body?.serviceTitles?.map((title, index) => ({ title }));
+      const teamImages = req.files["teamImages"] ? req.files["teamImages"].map(file => `${file.filename}`) : [];
 
       // Construct MongoDB-compatible objects
       const homeData = {
         navbar: {
-          brandName,
+          brandName: brandName,
+          navBarImg: navBarImg,
           contact: { number: contactNumber, status: true, link: contactLink },
           about: { status: aboutToggle === "true" },
           services: { status: servicesToggle === "true" },
@@ -146,7 +128,6 @@ router.post(
         },
         content: {
           heading,
-          homeBgImage,
           subheading,
           buttonText,
           buttonLink
@@ -159,10 +140,14 @@ router.post(
         features: parsedFeatureArray
       };
 
+      const teamData = {
+        heading: teamHeading,
+        images: teamImages
+      }
+
       const servicesData = {
         title: serviceTitle,
         heading: serviceHeading,
-        backgroundImage: serviceBackground,
         description: serviceDescription,
         features: parsedServiceFeatures,
         card: serviceCards,
@@ -202,6 +187,9 @@ router.post(
       const about = new About(aboutData);
       await about.save();
 
+      const team = new Team(teamData);
+      await team.save();
+
       const service = new Service(servicesData);
       await service.save();
 
@@ -213,6 +201,7 @@ router.post(
         websiteThemeColor,
         home: home._id,
         pricing: pricing._id,
+        team: team._id,
         about: about._id,
         service: service._id,
         footer: footer._id
@@ -244,20 +233,56 @@ router.delete("/:id", async (req, res) => {
       return res.status(404).json({ error: "Website not found" });
     }
 
-    // Delete associated Homepage and Pricing documents
+    // Delete associated Homepage and its navbar image
     if (website.home) {
+      const homepage = await Homepage.findById(website.home);
+      if (homepage?.navbar?.navBarImg) {
+        const navbarImagePath = path.join(__dirname, "..", "public", "uploads", homepage.navbar.navBarImg);
+        fs.unlink(navbarImagePath, (err) => {
+          if (err) console.error(`Error deleting homepage navbar image ${homepage.navbar.navBarImg}:`, err);
+        });
+      }
       await Homepage.deleteOne({ _id: website.home });
     }
     if (website.pricing) {
       await Pricing.deleteOne({ _id: website.pricing });
     }
+    if (website.team) {
+      const team = await Team.findById(website.team);
+      if (team && team.images.length > 0) {
+        team.images.forEach(imageUrl => {
+          const filePath = path.join(__dirname, "..", "public", "uploads", imageUrl); // Convert to absolute path
+          fs.unlink(filePath, (err) => {
+            if (err) console.error(`Error deleting image ${imageUrl}:`, err);
+          });
+        });
+      }
+      await Team.deleteOne({ _id: website.team });
+    }
     if (website.about) {
       await About.deleteOne({ _id: website.about });
     }
     if (website.service) {
+      const service = await Service.findById(website.service);
+      if (service) {
+        // Delete video file
+        if (service.video?.url) {
+          const videoPath = path.join(__dirname, "..", "public", "uploads", service.video.url);
+          fs.unlink(videoPath, err => {
+            if (err) console.error(`Error deleting service video ${service.video.url}:`, err);
+          });
+        }
+        // Delete video thumbnail
+        if (service.video?.thumbnail) {
+          const thumbnailPath = path.join(__dirname, "..", "public", "uploads", service.video.thumbnail);
+          fs.unlink(thumbnailPath, err => {
+            if (err) console.error(`Error deleting service thumbnail ${service.video.thumbnail}:`, err);
+          });
+        }
+      }
       await Service.deleteOne({ _id: website.service });
     }
-    if(website.footer){
+    if (website.footer) {
       await Footer.deleteOne({ _id: website.footer });
     }
 

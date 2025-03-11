@@ -6,6 +6,7 @@ const WebsiteSchema = new mongoose.Schema({
   home: { type: mongoose.Schema.Types.ObjectId, ref: "Homepage" },
   pricing: { type: mongoose.Schema.Types.ObjectId, ref: "Pricing" },
   about: { type: mongoose.Schema.Types.ObjectId, ref: "About" },
+  team: { type: mongoose.Schema.Types.ObjectId, ref: "Team" },
   service: { type: mongoose.Schema.Types.ObjectId, ref: "Service" },
   footer: { type: mongoose.Schema.Types.ObjectId, ref: "Footer" },
   createdAt: { type: Date, default: Date.now },

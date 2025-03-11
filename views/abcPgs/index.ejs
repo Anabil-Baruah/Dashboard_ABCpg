@@ -53,9 +53,13 @@
       <div class="top-bar">
         <div class="logo">
           <a href="#">
-            <h4 class="text-white">
-              <%= website.home.navbar.brandName %>
-            </h4 class="text-white">
+            <% if (website.home.navbar.brandName !=="" ) { %>
+              <h4 class="text-white">
+                <%= website.home.navbar.brandName %>
+              </h4>
+              <%}else{%>
+                <img src="uploads/<%= website.home.navbar.navBarImg%>" alt="Nav bar logo" class="logo">
+                <%}%>
           </a>
         </div>
         <nav class="navbar">
@@ -63,7 +67,7 @@
             <li class="navbar-dropdown menu-item-children">
               <a href="#">Demo Pages</a>
               <ul class="sub-menu">
-                <li><a href="index-2.html">Demo 1</a></li>
+                <li><a href="<%= website?._id%>/index-2">Demo 1</a></li>
                 <li><a href="index-3.html">Demo 2</a></li>
                 <li><a href="index-4.html">Demo 3</a></li>
                 <li><a href="index-5.html">Demo 4</a></li>
@@ -293,7 +297,8 @@
         <% website?.about?.features.forEach((feature)=> { %>
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="presenting d-flex">
-              <div class="img-div" style="background-color:<%= website.websiteThemeColor %> ; outline-color: <%= website.websiteThemeColor %>;">
+              <div class="img-div"
+                style="background-color:<%= website.websiteThemeColor %> ; outline-color: <%= website.websiteThemeColor %>;">
                 <img src="https://pginbangalore.com/ABCPG/assets/img/premium.png" alt="">
               </div>
               <div>
@@ -310,7 +315,27 @@
       </div>
     </div>
   </section>
-  <section id="services" class="gap how-it-works" style="background-image: url(uploads/<%= website?.service?.backgroundImage %>);">
+  <div id="team" class="gap no-top mt-3" style="margin-top: 100px!important;">
+    <div class="container">
+      <div class="heading sec-title-animation animation-style2">
+        <!-- <span class="title-animation">Plans and Pricing </span> -->
+        <h2 class="title-animation">
+          <%= website?.team?.heading %>
+        </h2>
+
+      </div>
+      <div class="row">
+        <% website?.team?.images.forEach((image)=> { %>
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing">
+              <img src="uploads/<%= image %>" alt="Coed Bedroom 1" class="img-fluid">
+            </div>
+          </div>
+          <%})%>
+      </div>
+    </div>
+  </div>
+  <section id="services" class="gap how-it-works" style="background-image: url(images/service-bg.png);">
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6">
@@ -326,8 +351,10 @@
           </div>
           <ul class="chek">
             <% website.service.features.forEach((feature)=> { %>
-            <li><img src="abcPgs/img/chek.png" alt="img"> <%= feature%></li>
-            <% }) %>
+              <li><img src="abcPgs/img/chek.png" alt="img">
+                <%= feature%>
+              </li>
+              <% }) %>
           </ul>
         </div>
         <div class="col-lg-6">
@@ -336,19 +363,25 @@
               <div class="how-do-stap">
                 <span style="background-color: <%= website.websiteThemeColor%>;">1</span>
                 <i class="flaticon-mail"></i>
-                <h4>Book a Visit <br> Call Now +91XXXXXXXXXX</h4>
+                <h4>
+                  <%= website.service?.card[0]?.title %>
+                </h4>
               </div>
               <div class="how-do-stap two" style="background-color: <%= website.websiteThemeColor%>;">
                 <span>2</span>
                 <i class="flaticon-team-building"></i>
-                <h4>Get a Personalized Tour and best Recommnedations </h4>
+                <h4>
+                  <%= website.service?.card[1]?.title %>
+                </h4>
               </div>
             </div>
             <div class="col-md-6">
               <div class="how-do-stap three">
-                <span style="background-color: <%= website.websiteThemeColor%>;" >3</span>
+                <span style="background-color: <%= website.websiteThemeColor%>;">3</span>
                 <i class="flaticon-security"></i>
-                <h4>Limited Slots Available – Secure Your Spot Now! </h4>
+                <h4>
+                  <%= website.service?.card[2]?.title %>
+                </h4>
               </div>
               <div class="video">
                 <img src="uploads/<%= website?.service?.video.thumbnail %>" alt="img">
@@ -447,32 +480,44 @@
   <section id="pricing" class="gap no-top mt-3">
     <div class="container">
       <div class="heading sec-title-animation animation-style2">
-        <span class="title-animation"style="background-color: <%= website?.websiteThemeColor %>;"><%= website.pricing.title %> </span>
-        <h2 class="title-animation"><%= website.pricing.heading %>
+        <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
+          <%= website.pricing.title %>
+        </span>
+        <h2 class="title-animation">
+          <%= website.pricing.heading %>
         </h2>
-        <p class=" d-flex mt-3 "><%= website.pricing.subHeading%></p>
+        <p class=" d-flex mt-3 ">
+          <%= website.pricing.subHeading%>
+        </p>
       </div>
       <div class="row">
         <% website.pricing?.pricingPlansArray.forEach((plan)=>{%>
-        <div class="col-lg-4 col-md-6">
-          <div class="pricing">
-            <div class="pricing-plans">
-              <span><%= plan.title %></span>
-              <h5><%= plan?.price?.currency %><%= plan?.price?.value %> <sub>/ <%= plan?.price?.duration %></sub></h5>
-            </div>
-            <div class="pricing-plans-text">
-              <i class="flaticon-price-tag" style="background-color: <%= website?.websiteThemeColor %>;"></i>
-              <p>Privacy, focus, and inspiration </p>
-              <ul class="chek">
-                <% plan.features.forEach((plan)=>{%>
-                <li><img src="abcPgs/img/chek.png" alt="img"> <%= plan%> </li>
-                <%})%>
-              </ul>
-              <a href="#" class="button btn"><span><span>Talk Now</span></span></a>
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing">
+              <div class="pricing-plans">
+                <span>
+                  <%= plan.title %>
+                </span>
+                <h5>
+                  <%= plan?.price?.currency %>
+                    <%= plan?.price?.value %> <sub>/ <%= plan?.price?.duration %></sub>
+                </h5>
+              </div>
+              <div class="pricing-plans-text">
+                <i class="flaticon-price-tag" style="background-color: <%= website?.websiteThemeColor %>;"></i>
+                <p>Privacy, focus, and inspiration </p>
+                <ul class="chek">
+                  <% plan.features.forEach((plan)=>{%>
+                    <li><img src="abcPgs/img/chek.png" alt="img">
+                      <%= plan%>
+                    </li>
+                    <%})%>
+                </ul>
+                <a href="#" class="button btn"><span><span>Talk Now</span></span></a>
+              </div>
             </div>
           </div>
-        </div>
-        <%})%>
+          <%})%>
       </div>
     </div>
   </section>
@@ -483,8 +528,12 @@
     <div class="container">
       <div class="footer-try">
         <div>
-          <h2><%= website.footer.heading%></h2>
-          <p><%= website.footer.subHeading%></p>
+          <h2>
+            <%= website.footer.heading%>
+          </h2>
+          <p>
+            <%= website.footer.subHeading%>
+          </p>
 
         </div>
         <a href="#" class="button btn"><span><span>Whatsapp Now</span></span></a>
@@ -492,8 +541,12 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="footer-logo">
-            <h3 class="text-white" style="font-weight: 700;"><%= website.home.navbar.brandName %></h3>
-            <p><%= website.footer.address%></p>
+            <h3 class="text-white" style="font-weight: 700;">
+              <%= website.home.navbar.brandName %>
+            </h3>
+            <p>
+              <%= website.footer.address%>
+            </p>
             <ul class="social-media">
               <li><a href="<%= website.footer?.socials?.facebook%>"><i class="fa-brands fa-facebook-f"></i></a></li>
               <li><a href="<%= website.footer?.socials?.x%>"><i class="flaticon-twitter"></i></a></li>
@@ -529,7 +582,9 @@
               <div><i class="flaticon-mail-inbox-app"></i></div>
               <div>
                 <span>Email Address:</span>
-                <h6><a href="mailto:business@domain.com"><%= website.footer.email%></a></h6>
+                <h6><a href="mailto:business@domain.com">
+                    <%= website.footer.email%>
+                  </a></h6>
               </div>
             </div>
 

@@ -47,6 +47,29 @@ function toggleMenu() {
     }
 };
 
+//function choose the input type of the nav bar brand name or image
+document.addEventListener("DOMContentLoaded", () => {
+    const brandNameInput = document.getElementById("brandName");
+    const navImageInput = document.getElementById("navImage");
+
+    function toggleInputs() {
+        if (brandNameInput.value.trim() !== "") {
+            navImageInput.disabled = true;
+        } else {
+            navImageInput.disabled = false;
+        }
+
+        if (navImageInput.files.length > 0) {
+            brandNameInput.disabled = true;
+        } else {
+            brandNameInput.disabled = false;
+        }
+    }
+
+    brandNameInput.addEventListener("input", toggleInputs);
+    navImageInput.addEventListener("change", toggleInputs);
+});
+
 //Menu Active
 function getClosest(elem, selector) {
 

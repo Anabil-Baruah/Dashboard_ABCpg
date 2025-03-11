@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const ServiceSchema = new mongoose.Schema({
     title: { type: String },        //Amenities
     heading: { type: String },      //What we offer
-    backgroundImage: { type: String },
     description: {
         type: String,
         trim: true
