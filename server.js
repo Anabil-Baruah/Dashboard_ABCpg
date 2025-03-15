@@ -11,6 +11,7 @@ const pricingRoutes = require("./routes/pricingRoutes");
 const aboutRoutes = require("./routes/aboutRoutes");
 const serviceRoutes = require("./routes/serviceRoutes");
 const addWebsiteRoutes = require("./routes/addWebsiteRoutes");
+const authRoutes = require("./routes/authRoutes")
 const pg = require("./routes/dispalyPgsRoutes");
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.use('/pg/', express.static(__dirname + '/public'));
 // Routes
 app.use("/websites", websiteRoutes);
 app.use("/add-website", addWebsiteRoutes);
+app.use("/login", authRoutes)
 app.use("/home", homeRoutes);
 app.use("/pricing", pricingRoutes);
 app.use("/about", aboutRoutes);

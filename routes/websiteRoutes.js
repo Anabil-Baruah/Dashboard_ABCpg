@@ -20,6 +20,7 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const websites = await Website.find().populate("home");
+    console.log(websites)
     res.render("index", { websites: websites });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch websites" });
@@ -37,9 +38,9 @@ router.get("/add-website/add", async (req, res) => {
 });
 
 // Get a specific website by ID
-router.get("/:id", async (req, res) => {
+router.get("/:name", async (req, res) => {
   try {
-    const website = await Website.findById(req.params.id)
+    const website = await Website.findOne({ name: req.params.name })
       .populate("home") // Populating homepage details
       .populate("pricing") // Populating pricing page details
       .populate("about") // Populating about page details
@@ -47,11 +48,11 @@ router.get("/:id", async (req, res) => {
       .populate("service") // Populating service page details
       .populate("footer") // Populating footer details
       .exec();
-
+    // console.log(req.params.name, "name")
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
-    console.log(website, "website")
+    // console.log(website, "website")
     res.json(website);
   } catch (error) {
     console.error("Error fetching website:", error);
@@ -75,12 +76,9 @@ router.post(
     { name: "teamImages", maxCount: 20 }
   ]),
   async (req, res) => {
-    console.log(req.files, "req file")
+    // console.log(req.files, "req file")
     try {
 
-      // console.log("Received files:", req.files); // Debugging
-
-      // Extract text data
       const {
         name, websiteThemeColor, brandName, contactNumber, contactLink,
         heading, subheading, buttonText, buttonLink,
@@ -90,6 +88,12 @@ router.post(
         priceTitle, priceHeading, priceSubheading, footerHeading, footerSubheading,
         address, footerPhoneNumber, footerEmail, linkInstagram, linkFacebook, linkX
       } = req.body;
+
+      const nameExist = await Website.findOne({ name: name })
+      if (nameExist) {
+        res.status(301).json({ message: "Name already exist choose a different name" });
+        return
+      }
 
       // Extract uploaded image filenames
       const serviceVideoThumbnail = req.files["serviceVideoThumbnail"] ? req.files["serviceVideoThumbnail"][0].filename : null;
@@ -208,7 +212,7 @@ router.post(
       });
 
       await website.save();
-
+      // console.log(website)
       res.status(201).json({
         message: "Website created successfully!",
         website

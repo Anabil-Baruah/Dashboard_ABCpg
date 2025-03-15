@@ -28,12 +28,17 @@
       height: 8rem;
       width: auto;
     }
+    .pricing:hover,
+    .preloader
+     {
+      background-color: <%=website?.websiteThemeColor %>;
+    }
   </style>
 </head>
 
 <body>
   <!-- preloader -->
-  <div class="preloader" style="background-color: <%= website?.websiteThemeColor %>;">
+  <div class="preloader">
     <div class="loading-text">
       <span>L</span>
       <span>O</span>
