@@ -3,9 +3,12 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const path = require('path');
+const cookieParser = require('cookie-parser');
 const bodyParser = require("body-parser");
 const connectDB = require("./config/db");
 const websiteRoutes = require("./routes/websiteRoutes");
+const userRoutes = require("./routes/userRoutes")
+const subadminRoutes = require("./routes/subadminRoutes")
 const homeRoutes = require("./routes/homeRoutes");
 const pricingRoutes = require("./routes/pricingRoutes");
 const aboutRoutes = require("./routes/aboutRoutes");
@@ -23,19 +26,24 @@ connectDB();
 
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(cookieParser());
 app.use((req, res, next) => {
   res.set("Cache-Control", "no-store, no-cache, must-revalidate, private");
   next();
 });
 app.use('/', express.static(__dirname + '/public'));
 app.use('/websites/add-website', express.static(__dirname + '/public'));
+app.use('/auth', express.static(__dirname + '/public'));
 app.use('/pg', express.static(__dirname + '/public'));
 app.use('/pg/', express.static(__dirname + '/public'));
 
 // Routes
 app.use("/websites", websiteRoutes);
+app.use("/websites", websiteRoutes);
+app.use("/subadmin", subadminRoutes);
 app.use("/add-website", addWebsiteRoutes);
-app.use("/login", authRoutes)
+app.use("/user-details", userRoutes);
+app.use("/auth", authRoutes)
 app.use("/home", homeRoutes);
 app.use("/pricing", pricingRoutes);
 app.use("/about", aboutRoutes);

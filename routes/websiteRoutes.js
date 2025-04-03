@@ -10,6 +10,7 @@ const Team = require("../models/Team");
 const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
+const { auth2, auth } = require('../auth')
 
 
 dotenv.config();
@@ -17,10 +18,17 @@ dotenv.config();
 const router = express.Router();
 
 // Get all websites
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   try {
     const websites = await Website.find().populate("home");
-    console.log(websites)
+    res.render("index", { websites: websites });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch websites" });
+  }
+});
+router.get("/sub-admin", auth, async (req, res) => {
+  try {
+    const websites = await Website.find().populate("home");
     res.render("index", { websites: websites });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch websites" });

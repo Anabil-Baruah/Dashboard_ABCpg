@@ -28,9 +28,9 @@
       height: 8rem;
       width: auto;
     }
+
     .pricing:hover,
-    .preloader
-     {
+    .preloader {
       background-color: <%=website?.websiteThemeColor %>;
     }
   </style>
@@ -53,76 +53,73 @@
 
   <!-- preloader end -->
   <!-- header -->
-  <header id="stickyHeader">
-    <div class="container">
-      <div class="top-bar">
-        <div class="logo">
-          <a href="#">
-            <% if (website.home.navbar.brandName !=="" ) { %>
-              <h4 class="text-white">
-                <%= website.home.navbar.brandName %>
-              </h4>
-              <%}else{%>
-                <img src="uploads/<%= website.home.navbar.navBarImg%>" alt="Nav bar logo" class="logo">
-                <%}%>
-          </a>
-        </div>
-        <nav class="navbar">
-          <ul class="navbar-links">
-            <li class="navbar-dropdown menu-item-children">
-              <a href="#">Demo Pages</a>
-              <ul class="sub-menu">
-                <li><a href="<%= website?._id%>/index-2">Demo 1</a></li>
-                <li><a href="index-3.html">Demo 2</a></li>
-                <li><a href="index-4.html">Demo 3</a></li>
-                <li><a href="index-5.html">Demo 4</a></li>
-              </ul>
-            </li>
-            <li class="navbar-dropdown">
-              <a href="#about"> About </a>
-            </li>
-            <li class="navbar-dropdown">
-              <a href="#services">Services</a>
-            </li>
-            <li class="navbar-dropdown">
-              <a href="#team">Team</a>
-            </li>
-            <li class="navbar-dropdown">
-              <a href="#pricing">Pricing</a>
-            </li>
-            <li class="navbar-dropdown">
-              <a href="#blog">blog</a>
-            </li>
-          </ul>
-        </nav>
-        <a href="<%= website?.home?.navbar?.contact.link %>"><i class="flaticon-smart-phone"></i><b>
-            <%= website?.home?.navbar?.contact.number %>
-          </b></a>
-      </div>
-    </div>
-  </header>
-  <!-- header end -->
-  <section class="hero-section for no-bottom"
-    style="background-color: <%=website?.websiteThemeColor %>; padding-bottom: 9rem;">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="hero-text sec-title-animation animation-style2">
-
-            <h2 class="title-animation text-white">
-              <%= website.home.content.heading %>
-            </h2>
-            <div class="d-flex listing">
-              <p class="text-white">
-                <%= website.home.content.subheading %>
-              </p>
-            </div>
+  <%- include('./modals/navBarModal.ejs') %>
+    <header id="stickyHeader">
+      <div class="container">
+        <div class="top-bar d-flex justify-content-between align-items-center">
+          <div class="logo">
+            <a href="#">
+              <% if (website.home.navbar.brandName !=="" ) { %>
+                <h4 class="text-dark">
+                  <%= website.home.navbar.brandName %>
+                </h4>
+                <% } else { %>
+                  <img src="uploads/<%= website.home.navbar.navBarImg %>" alt="Nav bar logo" class="logo">
+                  <% } %>
+            </a>
           </div>
-          <a href="<%= website.home.content.buttonLink %>" class="button btn"><span><span>
-                <%= website.home.content.buttonText %>
-              </span></span></a>
+
+          <!-- Hamburger Button -->
+          <button class="navbar-toggler d-block d-md-none" data-bs-toggle="modal" data-bs-target="#mobileNavModal"
+            type="button" id="navToggle">
+            ☰
+          </button>
+
+          <!-- Navbar -->
+          <nav class="navbar" id="navbar">
+            <ul class="navbar-links">
+              <li class="navbar-dropdown menu-item-children">
+                <a href="#">Demo Pages</a>
+                <ul class="sub-menu">
+                  <li><a href="<%= website?._id%>/index-2">Demo 1</a></li>
+                  <li><a href="index-3.html">Demo 2</a></li>
+                  <li><a href="index-4.html">Demo 3</a></li>
+                  <li><a href="index-5.html">Demo 4</a></li>
+                </ul>
+              </li>
+              <li class="navbar-dropdown"><a href="#about">About</a></li>
+              <li class="navbar-dropdown"><a href="#services">Services</a></li>
+              <li class="navbar-dropdown"><a href="#team">Team</a></li>
+              <li class="navbar-dropdown"><a href="#pricing">Pricing</a></li>
+              <li class="navbar-dropdown"><a href="#blog">Blog</a></li>
+            </ul>
+          </nav>
         </div>
-        <!-- <div class="col-lg-12">
+      </div>
+    </header>
+
+    <!-- header end -->
+    <section class="hero-section for no-bottom"
+      style="background-color: <%=website?.websiteThemeColor %>; padding-bottom: 9rem;">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="hero-text sec-title-animation animation-style2">
+
+              <h2 class="title-animation text-white">
+                <%= website.home.content.heading %>
+              </h2>
+              <div class="d-flex listing">
+                <p class="text-white">
+                  <%= website.home.content.subheading %>
+                </p>
+              </div>
+            </div>
+            <a href="<%= website.home.content.buttonLink %>" class="button btn"><span><span>
+                  <%= website.home.content.buttonText %>
+                </span></span></a>
+          </div>
+          <!-- <div class="col-lg-12">
           <div class="video-fram">
             <div class="hs-responsive-embed-youtube">
               <iframe width="853" height="480" src="https://www.youtube.com/embed/3ThSqm6MOyo"
@@ -132,103 +129,103 @@
             </div>
           </div>
         </div> -->
-      </div>
-    </div>
-    <ul class="shaps-img">
-      <li><img src="abcPgs/img/shaps-4.png" alt="img"></li>
-      <li><img src="abcPgs/img/shaps-4.png" alt="img"></li>
-      <li><img src="abcPgs/img/shaps-1.png" alt="img"></li>
-      <li><img src="abcPgs/img/shaps-2.png" alt="img"></li>
-      <li><img src="abcPgs/img/shaps-3.png" alt="img"></li>
-    </ul>
-  </section>
-  <div class="gap">
-    <div class="container">
-      <div class="heading sec-title-animation animation-style2">
-        <img alt="img" src="abcPgs/img/heading-img.png">
-        <h5 class="title-animation">Amenities We Offer</h5>
-      </div>
-      <div class="marquee mt-4">
-        <div class="marquee-icon">
-          <div class="marquee-content">
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/appliance_1198306.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/chef-hat.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/wifi.svg" alt="img">
-            </div>
-
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/electrical-energy.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/flexible-contracts.svg" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/food.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/mop_7842219.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/sofa.svg" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/wrench-and-screwdriver.svg" alt="img">
-            </div>
-
-          </div>
-          <div class="marquee-content">
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/appliance_1198306.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/chef-hat.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/wifi.svg" alt="img">
-            </div>
-
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/electrical-energy.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/flexible-contracts.svg" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/food.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/mop_7842219.png" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/sofa.svg" alt="img">
-            </div>
-            <div class="marquee-item">
-              <img src="abcPgs/img/amenities-icons/wrench-and-screwdriver.svg" alt="img">
-            </div>
-
-          </div>
         </div>
       </div>
+      <ul class="shaps-img">
+        <li><img src="abcPgs/img/shaps-4.png" alt="img"></li>
+        <li><img src="abcPgs/img/shaps-4.png" alt="img"></li>
+        <li><img src="abcPgs/img/shaps-1.png" alt="img"></li>
+        <li><img src="abcPgs/img/shaps-2.png" alt="img"></li>
+        <li><img src="abcPgs/img/shaps-3.png" alt="img"></li>
+      </ul>
+    </section>
+    <div class="gap">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <img alt="img" src="abcPgs/img/heading-img.png">
+          <h5 class="title-animation">Amenities We Offer</h5>
+        </div>
+        <div class="marquee mt-4">
+          <div class="marquee-icon">
+            <div class="marquee-content">
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/appliance_1198306.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/chef-hat.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/wifi.svg" alt="img">
+              </div>
 
-    </div>
-  </div>
-  <hr>
-  <section id="about" class="gap">
-    <div class="container">
-      <div class="heading sec-title-animation animation-style2">
-        <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
-          <%= website.about.title %>
-        </span>
-        <h2 class="title-animation">
-          <%= website.about.heading %>
-        </h2>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/electrical-energy.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/flexible-contracts.svg" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/food.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/mop_7842219.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/sofa.svg" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/wrench-and-screwdriver.svg" alt="img">
+              </div>
+
+            </div>
+            <div class="marquee-content">
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/appliance_1198306.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/chef-hat.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/wifi.svg" alt="img">
+              </div>
+
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/electrical-energy.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/flexible-contracts.svg" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/food.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/mop_7842219.png" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/sofa.svg" alt="img">
+              </div>
+              <div class="marquee-item">
+                <img src="abcPgs/img/amenities-icons/wrench-and-screwdriver.svg" alt="img">
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div>
-      <!-- <div class="row">
+    </div>
+    <hr>
+    <section id="about" class="gap">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
+            <%= website.about.title %>
+          </span>
+          <h2 class="title-animation">
+            <%= website.about.heading %>
+          </h2>
+        </div>
+        <!-- <div class="row">
         <div class="col-md-6 d-flex align-items-stretch">
           <div class="presenting d-flex">
             <div class="img-div">
@@ -298,109 +295,362 @@
       </div> -->
 
 
-      <div class="row">
-        <% website?.about?.features.forEach((feature)=> { %>
-          <div class="col-md-6 d-flex align-items-stretch">
-            <div class="presenting d-flex">
-              <div class="img-div"
-                style="background-color:<%= website.websiteThemeColor %> ; outline-color: <%= website.websiteThemeColor %>;">
-                <img src="https://pginbangalore.com/ABCPG/assets/img/premium.png" alt="">
-              </div>
-              <div>
-                <h3>
-                  <%= feature?.title %>
-                </h3>
-                <p>
-                  <%= feature?.description %>
-                </p>
+        <div class="row">
+          <% website?.about?.features.forEach((feature)=> { %>
+            <div class="col-md-6 d-flex align-items-stretch">
+              <div class="presenting d-flex">
+                <div class="img-div"
+                  style="background-color:<%= website.websiteThemeColor %> ; outline-color: <%= website.websiteThemeColor %>;">
+                  <img src="https://pginbangalore.com/ABCPG/assets/img/premium.png" alt="">
+                </div>
+                <div>
+                  <h3>
+                    <%= feature?.title %>
+                  </h3>
+                  <p>
+                    <%= feature?.description %>
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-          <% }); %>
+            <% }); %>
+        </div>
       </div>
-    </div>
-  </section>
-  <div id="team" class="gap no-top mt-3" style="margin-top: 100px!important;">
-    <div class="container">
-      <div class="heading sec-title-animation animation-style2">
-        <!-- <span class="title-animation">Plans and Pricing </span> -->
-        <h2 class="title-animation">
-          <%= website?.team?.heading %>
-        </h2>
+    </section>
+    <div id="team" class="gap no-top mt-3" style="margin-top: 100px!important;">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <!-- <span class="title-animation">Plans and Pricing </span> -->
+          <h2 class="title-animation">
+            <%= website?.team?.heading %>
+          </h2>
+        </div>
 
-      </div>
-      <div class="row">
-        <% website?.team?.images.forEach((image)=> { %>
+
+        <div fs-mirrorclick-element="trigger" class="propert_header_image-grid">
+          <div id="w-node-_7f1ff982-b5b7-2d1f-cda2-867e36520b2b-07dfe7ed"
+            data-w-id="7f1ff982-b5b7-2d1f-cda2-867e36520b2b" style="" class="property_header_image-cover"><img
+              loading="lazy"
+              src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b4_67d2568e689c401411f388ce_DSC05812-HDR.webp"
+              alt="" class="property_header_image" /></div>
+          <div id="w-node-_9364217d-d248-94b7-f15f-21b434f1dda6-07dfe7ed"
+            class="property_header_image-gallery w-dyn-list">
+            <script type="text/x-wf-template"
+              id="wf-template-9364217d-d248-94b7-f15f-21b434f1dda7">%3Cdiv%20role%3D%22listitem%22%20class%3D%22property_header_image-gallery-item%20w-dyn-item%20w-dyn-repeater-item%22%3E%3Cimg%20alt%3D%22%22%20loading%3D%22lazy%22%20width%3D%22Auto%22%20height%3D%22Auto%22%20src%3D%22https%3A%2F%2Fcdn.prod.website-files.com%2F6593ed11d5ad65d107dfe790%2F67d25a2ed4145a4b4ab4d0b1_67d2568fc1863eb91b02f6f9_DSC05803-HDR.webp%22%20class%3D%22property_header_image-gallery-image%22%2F%3E%3C%2Fdiv%3E</script>
+            <div role="list" class="property_header_image-gallery-list w-dyn-items">
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b1_67d2568fc1863eb91b02f6f9_DSC05803-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0c0_67d2568e49220d0665e27111_DSC05813-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b7_67d2568e9a9ac17a63b911b2_DSC05783-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0ae_67d2568e8f7f40e02dbf17f1_DSC05788-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b4_67d2568e689c401411f388ce_DSC05812-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0ba_67d2569349220d0665e273f3_DSC05828-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0a5_67d25693e92badb00bc24c01_DSC05823-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
+                  loading="lazy" width="Auto" height="Auto"
+                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0bd_67d256931d645f054446fdbc_DSC05818-HDR.webp"
+                  class="property_header_image-gallery-image" /></div>
+            </div>
+          </div>
+          <!-- Modal with Carousel -->
+          <% var images=website && website.team && website.team.images ? website.team.images : []; %>
+            <%- include('./modals/imageModals.ejs', { website: website }) %>
+              <div class="property_header_button-wrapper"><a href="#" fs-mirrorclick-element="target"
+                  data-bs-toggle="modal" data-bs-target="#imageModal"
+                  class="button button-lavender-20 is-small w-inline-block w-lightbox">
+                  <div class="icon-embed-custom w-embed"><svg xmlns="http://www.w3.org/2000/svg" width="100%"
+                      height="100%" viewBox="0 0 20 20" fill="none" preserveAspectRatio="xMidYMid meet" role="img">
+                      <path
+                        d="M7.49984 18.3334H12.4998C16.6665 18.3334 18.3332 16.6667 18.3332 12.5001V7.50008C18.3332 3.33341 16.6665 1.66675 12.4998 1.66675H7.49984C3.33317 1.66675 1.6665 3.33341 1.6665 7.50008V12.5001C1.6665 16.6667 3.33317 18.3334 7.49984 18.3334Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      <path
+                        d="M7.50016 8.33333C8.42064 8.33333 9.16683 7.58714 9.16683 6.66667C9.16683 5.74619 8.42064 5 7.50016 5C6.57969 5 5.8335 5.74619 5.8335 6.66667C5.8335 7.58714 6.57969 8.33333 7.50016 8.33333Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      <path
+                        d="M2.2251 15.7916L6.33343 13.0332C6.99176 12.5916 7.94176 12.6416 8.53343 13.1499L8.80843 13.3916C9.45843 13.9499 10.5084 13.9499 11.1584 13.3916L14.6251 10.4166C15.2751 9.85822 16.3251 9.85822 16.9751 10.4166L18.3334 11.5832"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg></div>
+                  <div>Show all images</div>
+                </a></div>
+              <div id="w-node-ed401769-7947-e231-e785-c8d81576b8f0-07dfe7ed" class="hide w-embed">
+                <style>
+                  .property_header_image-gallery-item:nth-child(n+5) {
+                    display: none;
+                  }
+                </style>
+              </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 col-md-6">
+            <div>
+              <h3 class="mb-3">About this property</h3>
+              <p>Discover an inviting blend of comfort and style in this charming 3BHK located in the heart of
+                Kasavanahalli, Sarjapur Road. The airy, open-plan layout welcomes you with ample natural
+                light, showcasing a tastefully furnished living area that flows seamlessly into a cozy dining
+                space—perfect for family gatherings. Modern fittings, elegant lighting, and soft pastel
+                accents elevate the interiors, while large windows ensure ventilation throughout the day. Each
+                bedroom is thoughtfully designed for both functionality and relaxation, offering generous
+                storage and tranquil views. The contemporary kitchen comes equipped with ample cabinetry and a
+                convenient sink setup, making daily cooking a delight. Strategically situated near schools,
+                supermarkets, and major workplaces, this residence offers easy connectivity and a hassle-free
+                commute. Experience urban living at its finest with this beautifully designed home that
+                perfectly balances style, convenience, and comfort.</p>
+            </div>
+          </div>
           <div class="col-lg-4 col-md-6">
-            <div class="pricing">
-              <img src="uploads/<%= image %>" alt="Coed Bedroom 1" class="img-fluid">
-            </div>
-          </div>
-          <%})%>
-      </div>
-    </div>
-  </div>
-  <section id="services" class="gap how-it-works" style="background-image: url(images/service-bg.png);">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div class="heading two sec-title-animation animation-style2">
-            <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
-              <%= website?.service?.title %>
-            </span>
-            <h2 class="title-animation">
-              <%= website.service.heading %>
-            </h2>
-            <p>E<%= website.service.description %>
-            </p>
-          </div>
-          <ul class="chek">
-            <% website.service.features.forEach((feature)=> { %>
-              <li><img src="abcPgs/img/chek.png" alt="img">
-                <%= feature%>
-              </li>
-              <% }) %>
-          </ul>
-        </div>
-        <div class="col-lg-6">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="how-do-stap">
-                <span style="background-color: <%= website.websiteThemeColor%>;">1</span>
-                <i class="flaticon-mail"></i>
-                <h4>
-                  <%= website.service?.card[0]?.title %>
-                </h4>
-              </div>
-              <div class="how-do-stap two" style="background-color: <%= website.websiteThemeColor%>;">
-                <span>2</span>
-                <i class="flaticon-team-building"></i>
-                <h4>
-                  <%= website.service?.card[1]?.title %>
-                </h4>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="how-do-stap three">
-                <span style="background-color: <%= website.websiteThemeColor%>;">3</span>
-                <i class="flaticon-security"></i>
-                <h4>
-                  <%= website.service?.card[2]?.title %>
-                </h4>
-              </div>
-              <div class="video">
-                <img src="uploads/<%= website?.service?.video.thumbnail %>" alt="img">
-                <a class="video-pop" data-fancybox="" href="uploads/<%=website?.service?.video.url %>"><i
-                    class="fa-solid fa-play"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+            <div class="team-img">
+              <div class="container px-0">
+                <div class="room-card ">
+                  <!-- Tabs -->
+                  <ul class="nav nav-pills mb-3">
+                    <li class="nav-item">
+                      <a class="nav-link active" data-bs-toggle="pill" href="#room1">Room 1</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-bs-toggle="pill" href="#room2">Room 2</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" data-bs-toggle="pill" href="#room3">Room 3</a>
+                    </li>
+                  </ul>
 
-  <!-- <section class="gap accordion-section">
+                  <!-- Tab Content -->
+                  <div class="tab-content">
+                    <div class="tab-pane fade show active" id="room1">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <h5 class="mb-0">Room 1</h5>
+                          <small class="text-muted">88BR1</small>
+                        </div>
+                        <span class="booked-badge">Booked</span>
+                      </div>
+
+                      <div class="d-flex mt-3">
+                        <div class="me-3"><i class="bi bi-house-door"></i> Balcony</div>
+                        <div><i class="bi bi-building"></i> Attached</div>
+                      </div>
+
+                      <div class="mt-3">
+                        <small class="text-muted">6 month lock-in</small>
+                        <h5 class="mb-0">₹26,000 <small>/mo</small></h5>
+                      </div>
+
+                      <div class="mt-3 cta-button">
+                        <i class="bi bi-whatsapp"></i> Chat With Us
+                      </div>
+
+                      <div class="mt-2 text-center text-muted">
+                        <i class="bi bi-calendar"></i> Schedule A Visit
+                      </div>
+                    </div>
+                    <div class="tab-pane fade show" id="room2">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <h5 class="mb-0">Room 2</h5>
+                          <small class="text-muted">88BR1</small>
+                        </div>
+                        <span class="booked-badge">Booked</span>
+                      </div>
+
+                      <div class="d-flex mt-3">
+                        <div class="me-3"><i class="bi bi-house-door"></i> Balcony</div>
+                        <div><i class="bi bi-building"></i> Attached</div>
+                      </div>
+
+                      <div class="mt-3">
+                        <small class="text-muted">6 month lock-in</small>
+                        <h5 class="mb-0">₹26,000 <small>/mo</small></h5>
+                      </div>
+
+                      <div class="mt-3 cta-button">
+                        <i class="bi bi-whatsapp"></i> Chat With Us
+                      </div>
+
+                      <div class="mt-2 text-center text-muted">
+                        <i class="bi bi-calendar"></i> Schedule A Visit
+                      </div>
+                    </div>
+                    <div class="tab-pane fade show" id="room3">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                          <h5 class="mb-0">Room 3</h5>
+                          <small class="text-muted">88BR1</small>
+                        </div>
+                        <span class="booked-badge bg-success text-white">Available</span>
+                      </div>
+
+                      <div class="d-flex mt-3">
+                        <div class="me-3"><i class="bi bi-house-door"></i> Balcony</div>
+                        <div><i class="bi bi-building"></i> Attached</div>
+                      </div>
+
+                      <div class="mt-3">
+                        <small class="text-muted">6 month lock-in</small>
+                        <h5 class="mb-0">₹89,000 <small>/mo</small></h5>
+                      </div>
+
+                      <div class="mt-3 cta-button">
+                        <i class="bi bi-whatsapp"></i> Chat With Us
+                      </div>
+
+                      <div class="mt-2 text-center text-muted">
+                        <i class="bi bi-calendar"></i> Schedule A Visit
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 col-md-6">
+            <div class="container mt-4 p-0">
+              <h2 class="fw-bold">Property Rooms</h2>
+              <div class="container p-0 col">
+                <div class="room-bigger-card p-4 mt-4">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>Room 1</h4>
+                    <span class="badge badge-booked px-3 py-2 bg-success text-white">Available</span>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-5" style="height: 20rem;">
+                      <img
+                        src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0c0_67d2568e49220d0665e27111_DSC05813-HDR.webp"
+                        class="img-fluid h-100 w-100 rounded room-image" alt="Room Image">
+                    </div>
+                    <div class="col-md-7">
+                      <h3 class="fw-bold">&#8377;26000/month</h3>
+                      <p class="text-muted">*Additional Deposit Initially</p>
+                      <hr>
+                      <div class="container mt-4">
+                        <div class="row gx-4">
+                          <div class="col-6 mb-3">&#128719; 180 Sq. ft.</div>
+                          <div class="col-6 mb-3">&#128705; Attached Bathroom</div>
+                          <div class="col-6 mb-3">&#127969; Balcony</div>
+                          <div class="col-6 mb-3">&#128663; Queen Size</div>
+                          <div class="col-6 mb-3">&#9997; Dedicated Workspace</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="room-bigger-card p-4 mt-4">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h4>Room 2</h4>
+                    <span class="badge badge-booked px-3 py-2">Booked</span>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="col-md-5" style="height: 20rem;">
+                      <img
+                        src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0bd_67d256931d645f054446fdbc_DSC05818-HDR.webp"
+                        class="img-fluid h-100 w-100 rounded room-image" alt="Room Image">
+                    </div>
+                    <div class="col-md-7">
+                      <h3 class="fw-bold">&#8377;43000/month</h3>
+                      <p class="text-muted">*Additional Deposit Initially</p>
+                      <hr>
+                      <div class="container mt-4">
+                        <div class="row gx-4">
+                          <div class="col-6 mb-3">&#128719; 180 Sq. ft.</div>
+                          <div class="col-6 mb-3">&#128705; Attached Bathroom</div>
+                          <div class="col-6 mb-3">&#127969; Balcony</div>
+                          <div class="col-6 mb-3">&#128663; Queen Size</div>
+                          <div class="col-6 mb-3">&#9997; Dedicated Workspace</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section id="services" class="gap how-it-works" style="background-image: url(images/service-bg.png);">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="heading two sec-title-animation animation-style2">
+              <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
+                <%= website?.service?.title %>
+              </span>
+              <h2 class="title-animation">
+                <%= website.service.heading %>
+              </h2>
+              <p>
+                <%= website.service.description %>
+              </p>
+            </div>
+            <ul class="chek">
+              <% website.service.features.forEach((feature)=> { %>
+                <li><img src="abcPgs/img/chek.png" alt="img">
+                  <%= feature%>
+                </li>
+                <% }) %>
+            </ul>
+          </div>
+          <div class="col-lg-6">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="how-do-stap">
+                  <span style="background-color: <%= website.websiteThemeColor%>;">1</span>
+                  <i class="flaticon-mail"></i>
+                  <h4>
+                    <%= website.service?.card[0]?.title %>
+                  </h4>
+                </div>
+                <div class="how-do-stap two" style="background-color: <%= website.websiteThemeColor%>;">
+                  <span>2</span>
+                  <i class="flaticon-team-building"></i>
+                  <h4>
+                    <%= website.service?.card[1]?.title %>
+                  </h4>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="how-do-stap three">
+                  <span style="background-color: <%= website.websiteThemeColor%>;">3</span>
+                  <i class="flaticon-security"></i>
+                  <h4>
+                    <%= website.service?.card[2]?.title %>
+                  </h4>
+                </div>
+                <div class="video">
+                  <img src="uploads/<%= website?.service?.video.thumbnail %>" alt="img">
+                  <a class="video-pop" data-fancybox="" href="uploads/<%=website?.service?.video.url %>"><i
+                      class="fa-solid fa-play"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="gap accordion-section">
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
@@ -482,140 +732,161 @@
     </ul>
   </section> -->
 
-  <section id="pricing" class="gap no-top mt-3">
-    <div class="container">
-      <div class="heading sec-title-animation animation-style2">
-        <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
-          <%= website.pricing.title %>
-        </span>
-        <h2 class="title-animation">
-          <%= website.pricing.heading %>
-        </h2>
-        <p class=" d-flex mt-3 ">
-          <%= website.pricing.subHeading%>
-        </p>
-      </div>
-      <div class="row">
-        <% website.pricing?.pricingPlansArray.forEach((plan)=>{%>
-          <div class="col-lg-4 col-md-6">
-            <div class="pricing">
-              <div class="pricing-plans">
-                <span>
-                  <%= plan.title %>
-                </span>
-                <h5>
-                  <%= plan?.price?.currency %>
-                    <%= plan?.price?.value %> <sub>/ <%= plan?.price?.duration %></sub>
-                </h5>
-              </div>
-              <div class="pricing-plans-text">
-                <i class="flaticon-price-tag" style="background-color: <%= website?.websiteThemeColor %>;"></i>
-                <p>Privacy, focus, and inspiration </p>
-                <ul class="chek">
-                  <% plan.features.forEach((plan)=>{%>
-                    <li><img src="abcPgs/img/chek.png" alt="img">
-                      <%= plan%>
-                    </li>
-                    <%})%>
-                </ul>
-                <a href="#" class="button btn"><span><span>Talk Now</span></span></a>
-              </div>
-            </div>
-          </div>
-          <%})%>
-      </div>
-    </div>
-  </section>
-
-
-
-  <footer class="gap no-bottom" style="background-color: <%= website?.websiteThemeColor %>;">
-    <div class="container">
-      <div class="footer-try">
-        <div>
-          <h2>
-            <%= website.footer.heading%>
+    <section id="pricing" class="gap no-top mt-3">
+      <div class="container">
+        <div class="heading sec-title-animation animation-style2">
+          <span class="title-animation" style="background-color: <%= website?.websiteThemeColor %>;">
+            <%= website.pricing.title %>
+          </span>
+          <h2 class="title-animation">
+            <%= website.pricing.heading %>
           </h2>
-          <p>
-            <%= website.footer.subHeading%>
+          <p class=" d-flex mt-3 ">
+            <%= website.pricing.subHeading%>
           </p>
-
         </div>
-        <a href="#" class="button btn"><span><span>Whatsapp Now</span></span></a>
+        <div class="row">
+          <% website.pricing?.pricingPlansArray.forEach((plan)=>{%>
+            <div class="col-lg-4 col-md-6">
+              <div class="pricing">
+                <div class="pricing-plans">
+                  <span>
+                    <%= plan.title %>
+                  </span>
+                  <h5>
+                    <%= plan?.price?.currency %>
+                      <%= plan?.price?.value %> <sub>/ <%= plan?.price?.duration %></sub>
+                  </h5>
+                </div>
+                <div class="pricing-plans-text">
+                  <i class="flaticon-price-tag" style="background-color: <%= website?.websiteThemeColor %>;"></i>
+                  <p>Privacy, focus, and inspiration </p>
+                  <ul class="chek">
+                    <% plan.features.forEach((plan)=>{%>
+                      <li><img src="abcPgs/img/chek.png" alt="img">
+                        <%= plan%>
+                      </li>
+                      <%})%>
+                  </ul>
+                  <a href="#" class="button btn"><span><span>Talk Now</span></span></a>
+                </div>
+              </div>
+            </div>
+            <%})%>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="footer-logo">
-            <h3 class="text-white" style="font-weight: 700;">
-              <%= website.home.navbar.brandName %>
-            </h3>
+    </section>
+
+
+    <!-- Contact Form Section -->
+    <section id="contact" class="gap contact-section">
+      <div class="container">
+        <div class="col-lg-8">
+          <div class="heading sec-title-animation animation-style2 text-start m-0 mb-2">
+            <h2 class="title-animation text-nowrap">Location & Neighbourhood</h2>
+            <p>Check exact commute from your office / other landmarks by searching for them below</p>
+          </div>
+          <div class="card h-100 p-3 shadow-lg mb-4">
+            <h4>Our Location</h4>
+            <iframe width="100%" height="400" style="border:0; border-radius: 10px;" loading="lazy" allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509555!2d144.95592831550434!3d-37.81720974202186!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0xf5775b58a5aeea0!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1634555061234!5m2!1sen!2sau">
+            </iframe>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <footer class="gap no-bottom" style="background-color: <%= website?.websiteThemeColor %>;">
+      <div class="container">
+        <div class="footer-try">
+          <div>
+            <h2>
+              <%= website.footer.heading%>
+            </h2>
             <p>
-              <%= website.footer.address%>
+              <%= website.footer.subHeading%>
             </p>
-            <ul class="social-media">
-              <li><a href="<%= website.footer?.socials?.facebook%>"><i class="fa-brands fa-facebook-f"></i></a></li>
-              <li><a href="<%= website.footer?.socials?.x%>"><i class="flaticon-twitter"></i></a></li>
-              <li><a href="<%= website.footer?.socials?.instagram%>"><i class="flaticon-instagram"></i></a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-12">
-          <div class="widget-title" style="display: flex; flex-direction: column; gap: 3px;">
-            <h3>Useful Links</h3>
-            <ul>
-              <li><i class="fa-solid fa-angles-right"></i><a href="about.html">About Us</a></li>
-              <li><i class="fa-solid fa-angles-right"></i><a href="#">Timeline </a></li>
-              <li><i class="fa-solid fa-angles-right"></i><a href="#">Image Gallery </a></li>
-              <li><i class="fa-solid fa-angles-right"></i><a href="contact.html">Contact Us</a></li>
-              <li><i class="fa-solid fa-angles-right"></i><a href="faq.html">Faq’s</a></li>
-
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="widget-title">
-            <h3>Contact Us</h3>
-            <div class="get-in-touch">
-              <div><i class="flaticon-iphone"></i></div>
-              <div>
-                <span>Phone No:</span>
-                <h6><a href="callto:+15554361747">+91 <%= website.footer.phoneNumber%></a></h6>
-                <h6><a href="callto:+15554361747">+91 <%= website.footer.phoneNumber%></a></h6>
-              </div>
-            </div>
-            <div class="get-in-touch">
-              <div><i class="flaticon-mail-inbox-app"></i></div>
-              <div>
-                <span>Email Address:</span>
-                <h6><a href="mailto:business@domain.com">
-                    <%= website.footer.email%>
-                  </a></h6>
-              </div>
-            </div>
 
           </div>
+          <a href="#" class="button btn"><span><span>Whatsapp Now</span></span></a>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="footer-logo">
+              <h3 class="text-white" style="font-weight: 700;">
+                <%= website.home.navbar.brandName %>
+              </h3>
+              <p>
+                <%= website.footer.address%>
+              </p>
+              <ul class="social-media">
+                <li><a href="<%= website.footer?.socials?.facebook%>"><i class="fa-brands fa-facebook-f"></i></a></li>
+                <li><a href="<%= website.footer?.socials?.x%>"><i class="flaticon-twitter"></i></a></li>
+                <li><a href="<%= website.footer?.socials?.instagram%>"><i class="flaticon-instagram"></i></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-12">
+            <div class="widget-title" style="display: flex; flex-direction: column; gap: 3px;">
+              <h3>Useful Links</h3>
+              <ul>
+                <li><i class="fa-solid fa-angles-right"></i><a href="about.html">About Us</a></li>
+                <li><i class="fa-solid fa-angles-right"></i><a href="#">Timeline </a></li>
+                <li><i class="fa-solid fa-angles-right"></i><a href="#">Image Gallery </a></li>
+                <li><i class="fa-solid fa-angles-right"></i><a href="contact.html">Contact Us</a></li>
+                <li><i class="fa-solid fa-angles-right"></i><a href="faq.html">Faq’s</a></li>
+
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6">
+            <div class="widget-title">
+              <h3>Contact Us</h3>
+              <div class="get-in-touch">
+                <div><i class="flaticon-iphone"></i></div>
+                <div>
+                  <span>Phone No:</span>
+                  <h6><a href="callto:+15554361747">+91 <%= website.footer.phoneNumber%></a></h6>
+                  <h6><a href="callto:+15554361747">+91 <%= website.footer.phoneNumber%></a></h6>
+                </div>
+              </div>
+              <div class="get-in-touch">
+                <div><i class="flaticon-mail-inbox-app"></i></div>
+                <div>
+                  <span>Email Address:</span>
+                  <h6><a href="mailto:business@domain.com">
+                      <%= website.footer.email%>
+                    </a></h6>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="all-rights">
+          <p>© 2025 ABC. All Rights Reserved.</p>
+
         </div>
       </div>
-      <div class="all-rights">
-        <p>© 2025 ABC. All Rights Reserved.</p>
-
-      </div>
-    </div>
-    <ul class="shaps-img">
-      <li><img src="abcPgs/img/shaps-4.png" alt="img"></li>
-      <li><img src="abcPgs/img/shaps-1.png" alt="img"></li>
-      <li><img src="abcPgs/img/shaps-2.png" alt="img"></li>
-    </ul>
-  </footer>
-  <div id="scroll-percentage"><span id="scroll-percentage-value"></span></div>
-  <!-- jQuery -->
-  <script src="abcPgs/js/jquery-3.6.0.min.js"></script>
-  <script src="abcPgs/js/bootstrap.min.js"></script>
-  <script src="abcPgs/js/jquery.fancybox.min.js"></script>
-  <script src="abcPgs/js/splitText.js"></script>
-  <script src="abcPgs/js/gsap.js"></script>
-  <script src="abcPgs/js/scrolltrigger.js"></script>
-  <script src="abcPgs/js/custom.js"></script>
-  <script src="abcPgs/js/sweetalert.min.js"></script>
-  <script src="abcPgs/js/contact.js"></script>
+      <ul class="shaps-img">
+        <li><img src="abcPgs/img/shaps-4.png" alt="img"></li>
+        <li><img src="abcPgs/img/shaps-1.png" alt="img"></li>
+        <li><img src="abcPgs/img/shaps-2.png" alt="img"></li>
+      </ul>
+    </footer>
+    <div id="scroll-percentage"><span id="scroll-percentage-value"></span></div>
+    <!-- jQuery -->
+    <script src="abcPgs/js/jquery-3.6.0.min.js"></script>
+    <script src="abcPgs/js/bootstrap.min.js"></script>
+    <script src="abcPgs/js/jquery.fancybox.min.js"></script>
+    <script src="abcPgs/js/splitText.js"></script>
+    <script src="abcPgs/js/gsap.js"></script>
+    <script src="abcPgs/js/scrolltrigger.js"></script>
+    <script src="abcPgs/js/custom.js"></script>
+    <script src="abcPgs/js/sweetalert.min.js"></script>
+    <script src="abcPgs/js/contact.js"></script>
+    <script src="abcPgs/js/eventListeners.js"></script>
 </body>

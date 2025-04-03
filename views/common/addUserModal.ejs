@@ -1,0 +1,78 @@
+<!-- Modal -->
+<div class="modal fade" id="addSubadminModal" tabindex="-1" aria-labelledby="addSubadminModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addSubadminModalLabel">Add New Subadmin</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form to Add Subadmin -->
+                <form id="addSubadminForm">
+                    <div class="mb-3">
+                        <label for="subadminUsername" class="form-label">Subadmin Username</label>
+                        <input type="text" class="form-control" id="subadminUsername"
+                            placeholder="Enter subadmin username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subadminPassword" class="form-label">Subadmin Password</label>
+                        <input type="password" class="form-control" id="subadminPassword"
+                            placeholder="Enter subadmin password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="subadminConfirmPassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="subadminConfirmPassword"
+                            placeholder="Confirm subadmin password" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="submitSubadmin">Add Subadmin</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById("submitSubadmin").addEventListener("click", async function () {
+        const username = document.getElementById("subadminUsername").value;
+        const password = document.getElementById("subadminPassword").value;
+        const confirmPassword = document.getElementById("subadminConfirmPassword").value;
+
+        // Validate that passwords match
+        if (password !== confirmPassword) {
+            alert("Passwords do not match!");
+            return;
+        }
+
+        // Check if fields are not empty
+        if (!username || !password) {
+            alert("Please fill in all the fields.");
+            return;
+        }
+
+        try {
+            // Send the data to the server (POST request)
+            const response = await fetch("/auth/signUp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password, role: "subadmin" })
+            });
+
+            const result = await response.json();
+
+            if (response.status == 200) {
+                alert("Subadmin added successfully!");
+                location.reload(); // Reload the page to see the changes
+            } else {
+                alert(result.message || "Error adding subadmin");
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    });
+
+</script>
