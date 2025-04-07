@@ -33,12 +33,12 @@ app.use((req, res, next) => {
 });
 app.use('/', express.static(__dirname + '/public'));
 app.use('/websites/add-website', express.static(__dirname + '/public'));
+app.use('/subadmin', express.static(__dirname + '/public'));
 app.use('/auth', express.static(__dirname + '/public'));
 app.use('/pg', express.static(__dirname + '/public'));
 app.use('/pg/', express.static(__dirname + '/public'));
 
 // Routes
-app.use("/websites", websiteRoutes);
 app.use("/websites", websiteRoutes);
 app.use("/subadmin", subadminRoutes);
 app.use("/add-website", addWebsiteRoutes);

@@ -1,5 +1,6 @@
 const express = require("express");
 const User = require("../models/User")
+const Website = require("../models/Website")
 
 const router = express.Router();
 
@@ -10,7 +11,8 @@ const router = express.Router();
 router.get("/", async (req, res) => {
   try {
     const userDetail = await User.find({ role: "subadmin" })
-    res.render("user-management", {userDetail})
+    const websites = await Website.find();
+    res.render("user-management", { userDetail, websites })
   } catch (error) {
     res.status(500).json({ error: "Failed to create homepage", details: error.message });
   }

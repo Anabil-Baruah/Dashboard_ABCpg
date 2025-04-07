@@ -15,6 +15,19 @@
                             placeholder="Enter subadmin username" required>
                     </div>
                     <div class="mb-3">
+                        <label for="subadminWebsite" class="form-label">Assign Website</label>
+                        <select class="form-select" id="subadminWebsite" required>
+                            <option value="" disabled selected>Select a website</option>
+                            <!-- These options will be dynamically filled or hardcoded -->
+                            <% websites.forEach((website)=>{%>
+                                <option value="<%= website._id%>">
+                                    <%= website.name%>
+                                </option>
+                                <%})%>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="subadminPassword" class="form-label">Subadmin Password</label>
                         <input type="password" class="form-control" id="subadminPassword"
                             placeholder="Enter subadmin password" required>
@@ -36,10 +49,11 @@
 
 <script>
     document.getElementById("submitSubadmin").addEventListener("click", async function () {
+        console.log("uonfowevwev");
         const username = document.getElementById("subadminUsername").value;
         const password = document.getElementById("subadminPassword").value;
         const confirmPassword = document.getElementById("subadminConfirmPassword").value;
-
+        const website = document.getElementById("subadminWebsite").value;
         // Validate that passwords match
         if (password !== confirmPassword) {
             alert("Passwords do not match!");
@@ -47,7 +61,7 @@
         }
 
         // Check if fields are not empty
-        if (!username || !password) {
+        if (!username || !password || !website) {
             alert("Please fill in all the fields.");
             return;
         }
@@ -59,7 +73,7 @@
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username, password, role: "subadmin" })
+                body: JSON.stringify({ username, password, role: "subadmin", website })
             });
 
             const result = await response.json();
@@ -72,7 +86,25 @@
             }
         } catch (error) {
             console.error("Error:", error);
+            alert("Something went wrong. Please try again.");
         }
     });
 
+
+
+    // $(document).ready(function () {
+    //     $('#subadminWebsite').select2({
+    //         dropdownParent: $('#addSubadminModal'),
+    //         width: '100%',
+    //         placeholder: "Select a website",
+    //         allowClear: true
+    //     });
+    // });
+
+    // const website = document.getElementById("subadminWebsite").value;
+
+    // if (!website) {
+    //     alert("Please select a website.");
+    //     return;
+    // }
 </script>

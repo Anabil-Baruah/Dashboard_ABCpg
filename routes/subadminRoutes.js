@@ -15,8 +15,20 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
     try {
         const userId = req.params.id
-        const userDetail = await User.find({ role: "subadmin", _id: userId })
-        res.render("user-management", { userDetail })
+        const userDetail = await User.findOne({ role: "subadmin", _id: userId })
+            .populate({
+                path: "website",
+                populate: [
+                    { path: "home", model: "Homepage" },
+                    { path: "pricing", model: "Pricing" },
+                    { path: "about", model: "About" },
+                    { path: "team", model: "Team" },
+                    { path: "service", model: "Service" },
+                    { path: "footer", model: "Footer" }
+                ]
+            });
+            console.log(userDetail)
+        res.render("index-subadmin", { userDetail })
     } catch (error) {
         res.status(500).json({ error: "Failed to create homepage", details: error.message });
     }

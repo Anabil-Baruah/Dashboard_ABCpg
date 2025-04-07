@@ -69,7 +69,7 @@ router.post("/login", async (req, res) => {
     }
     else if (role === "subadmin") {
       let subAdminUser = await User.findOne({ username, role: "subadmin" });
-
+      console.log(subAdminUser, "subadmin user")
       if (!subAdminUser) {
         return res.status(401).json({ status: "error", message: "Subadmin does not exist" });
       }
@@ -87,13 +87,12 @@ router.post("/login", async (req, res) => {
         { expiresIn: "1h" }
       );
 
-      res.cookie("jwt", accessToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
-      });
-
-      return res.redirect("/websites");
+      res.cookie('jwt', accessToken, {
+        httpOnly: true
+      })
+      const update = await User.findOneAndUpdate({ username, role: "subadmin" }, { $set: { accessToken } });
+      console.log(update, "updated")
+      return res.status(200).json({ status: "Success", message: "User created", userId: update._id })
     }
     else {
       return res.status(403).json({ status: "error", message: "Only admin and subadmin can access this route" });
@@ -108,7 +107,7 @@ router.post('/signUp', async (req, res) => {
   console.log(req.body)
   try {
     // Get username, password, and role from the request body
-    const { username, password, role } = req.body;
+    const { username, password, role, website } = req.body;
 
     // Ensure the role is set to "subadmin"
     if (role !== "subadmin") {
@@ -131,6 +130,7 @@ router.post('/signUp', async (req, res) => {
       username,
       password,
       role: "subadmin",
+      website
     });
 
     // Save the subadmin user to the database

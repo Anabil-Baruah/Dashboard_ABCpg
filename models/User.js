@@ -7,13 +7,14 @@ const userSchema = mongoose.Schema({
         type: String,
         default: Date.now
     },
-    username:String,
+    username: String,
     password: String,
     role: {
         type: String,
         enum: ['admin', 'subadmin'], // Only allow these two values
         required: true
     },
+    website: { type: mongoose.Schema.Types.ObjectId, ref: "Website" },
     accessToken: {
         type: String
     }
