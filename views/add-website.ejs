@@ -41,349 +41,358 @@
 
     <div class="page-wrapper toggled">
         <!-- sidebar-wrapper -->
-        <%- include('./common/navbar.ejs')%>
+        <%- include('./common/navbar.ejs', {userDetail})%>
             <!-- sidebar-wrapper  -->
 
             <!-- Start Page Content -->
             <main class="page-content bg-light">
                 <!-- Top Header -->
                 <%- include('./common/topHeader.ejs')%>
-                <!-- Top Header -->
+                    <!-- Top Header -->
 
-                <div class="container-fluid card">
-                    <div class="layout-specing">
-                        <div class="container mt-5">
-                            <h2 class="text-center mb-4">Website Configuration Form</h2>
-                            <div class="card shadow-lg">
-                                <div class="card-body">
-                                    <form id="pgForm">
-                                        <!-- Website Name -->
-                                        <div class="mb-3">
-                                            <label class="form-label">Website Name</label>
-                                            <input type="text" id="name" class="form-control"
-                                                placeholder="Enter website name" required>
-                                            <small class="text-muted">Note: The name has to unique</small>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Select website theme Color</label>
-                                            <input type="color" id="websiteThemeColor"
-                                                class="form-control form-control-color">
-                                        </div>
-                                        <hr>
-
-
-                                        <!-- Home Page Description -->
-                                        <h4 class="mb-3">Home Page Details</h4>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nav bar Brand</label>
-                                                    <input type="text" id="brandName" class="form-control"
-                                                        placeholder="Enter main heading">
-                                                    <small class="text-muted">You can enter a brand name or upload an
-                                                        image.</small>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-2">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Nav bar Image</label>
-                                                    <input type="file" accept="image/*" id="navImage"
-                                                        class="form-control" placeholder="Enter main the navbar image">
-                                                    <small class="text-muted">You can enter a brand name or upload an
-                                                        image.</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Contact Number </label>
-                                                    <input type="number" id="contactNumber" class="form-control"
-                                                        placeholder="Enter main heading">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-2">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Contact Number link</label>
-                                                    <input type="text" id="contactLink" class="form-control"
-                                                        placeholder="Enter main heading">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6 mb-2">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Button Content</label>
-                                                    <input type="text" id="buttonText" class="form-control"
-                                                        placeholder="Enter button text">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 mb-2">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Button Link</label>
-                                                    <input type="text" id="buttonLink" class="form-control"
-                                                        placeholder="Enter button link">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label">Body Main Heading</label>
-                                            <input type="text" id="heading" class="form-control"
-                                                placeholder="Enter body heading">
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label class="form-label">Sub Heading</label>
-                                            <input type="text" id="subheading" class="form-control"
-                                                placeholder="Enter sub heading">
-                                        </div>
-
-                                        <hr>
-
-                                        <!-- Section Toggles -->
-
-                                        <!-- About Section -->
-
-                                        <h4 class="mb-3">About Section</h4>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input section-toggle" type="checkbox"
-                                                id="aboutToggle" checked>
-                                            <label class="form-check-label" for="aboutToggle">Enable About
-                                                Section</label>
-                                        </div>
-
-                                        <div id="aboutSection">
+                    <div class="container-fluid card">
+                        <div class="layout-specing">
+                            <div class="container mt-5">
+                                <h2 class="text-center mb-4">Website Configuration Form</h2>
+                                <div class="card shadow-lg">
+                                    <div class="card-body">
+                                        <form id="pgForm">
+                                            <!-- Website Name -->
                                             <div class="mb-3">
-                                                <label class="form-label">Title</label>
-                                                <input type="text" class="form-control" id="aboutTitle"
-                                                    placeholder="Enter About Title">
+                                                <label class="form-label">Website Name</label>
+                                                <input type="text" id="name" class="form-control"
+                                                    placeholder="Enter website name" required>
+                                                <small class="text-muted">Note: The name has to unique</small>
                                             </div>
-
                                             <div class="mb-3">
-                                                <label class="form-label">Heading</label>
-                                                <input type="text" class="form-control" id="aboutHeading"
-                                                    placeholder="Enter About Heading">
+                                                <label class="form-label">Select website theme Color</label>
+                                                <input type="color" id="websiteThemeColor"
+                                                    class="form-control form-control-color">
                                             </div>
-
-                                            <!-- Features List -->
-                                            <h5 class="mb-3">Features</h5>
-                                            <div id="featuresContainer"></div>
-
-                                            <!-- Add Feature Button -->
-                                            <button type="button" class="btn btn-success mb-3" id="addFeatureBtn">Add
-                                                Feature</button>
-                                        </div>
-                                        <hr>
-
-                                        <div id="teamsSection">
-                                            <h4 class="mb-3">Teams Section</h4>
-
-                                            <!-- Service Heading -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Heading</label>
-                                                <input type="text" id="teamHeading" class="form-control"
-                                                    placeholder="Enter service heading">
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label class="form-label">Insert the images</label>
-                                                <input type="file" multiple accept="image/*" id="teamImages"
-                                                    class="form-control" placeholder="Enter thumbnail URL">
-                                            </div>
-
-                                        </div>
-
-                                        <hr>
-                                        <!-- Services Section -->
-                                        <h4 class="mb-3">Services Sections</h4>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="servicesToggle" checked>
-                                            <label class="form-check-label" for="serviceToggle">Enable Service
-                                                Section</label>
-                                        </div>
-
-                                        <div id="serviceSection" class="mb-3">
-                                            <!-- Service Title -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Title (e.g., Amenities)</label>
-                                                <input type="text" id="serviceTitle" class="form-control"
-                                                    placeholder="Enter service title">
-                                            </div>
-
-                                            <!-- Service Heading -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Heading (e.g., What we offer)</label>
-                                                <input type="text" id="serviceHeading" class="form-control"
-                                                    placeholder="Enter service heading">
-                                            </div>
+                                            <hr>
 
 
-                                            <!-- Description -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Description</label>
-                                                <textarea class="form-control" rows="3" id="serviceDescription"
-                                                    placeholder="Enter service description"></textarea>
-                                            </div>
-                                            <!-- Description -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Features</label>
-                                                <input class="form-control" rows="3" id="serviceFeatures"
-                                                    placeholder="Enter all features seperated by comas"></input>
-                                            </div>
+                                            <!-- Home Page Description -->
+                                            <h4 class="mb-3">Home Page Details</h4>
                                             <div class="row">
                                                 <div class="col-md-6 mb-2">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Video URL</label>
-                                                        <input type="file" accept="video/*" id="serviceVideo"
-                                                            class="form-control" placeholder="Enter video URL">
+                                                        <label class="form-label">Nav bar Brand</label>
+                                                        <input type="text" id="brandName" class="form-control"
+                                                            placeholder="Enter main heading">
+                                                        <small class="text-muted">You can enter a brand name or upload
+                                                            an
+                                                            image.</small>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 mb-2">
                                                     <div class="mb-3">
-                                                        <label class="form-label">Thumbnail URL</label>
-                                                        <input type="file" accept="image/*" id="serviceVideoThumbnail"
-                                                            class="form-control" placeholder="Enter thumbnail URL">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Service Cards -->
-                                            <h6>Service Cards</h6>
-                                            <div id="cardsContainer"></div>
-                                            <button type="button" class="btn btn-success mt-2" id="addCardBtn">Add
-                                                Card</button>
-
-                                            <!-- Video Section -->
-                                        </div>
-
-                                        <hr>
-
-
-
-                                        <!-- Pricing Section -->
-                                        <!-- Toggle Pricing Section -->
-                                        <h4 class="mb-3">Price Section</h4>
-                                        <div class="form-check form-switch mb-3">
-                                            <input class="form-check-input" type="checkbox" id="pricingToggle" checked>
-                                            <label class="form-check-label" for="pricingToggle">Enable Pricing
-                                                Section</label>
-                                        </div>
-
-                                        <div id="pricingSection" class="mb-3">
-                                            <!-- Pricing Title -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Title (e.g., Single Occupancy
-                                                    Studios)</label>
-                                                <input type="text" id="priceTitle" class="form-control"
-                                                    placeholder="Enter pricing title">
-                                            </div>
-
-                                            <!-- Pricing Heading -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Heading</label>
-                                                <input type="text" id="priceHeading" class="form-control"
-                                                    placeholder="Enter pricing heading">
-                                            </div>
-
-                                            <!-- Pricing Subheading -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Subheading</label>
-                                                <input type="text" class="form-control" id="priceSubheading"
-                                                    placeholder="Enter pricing subheading">
-                                            </div>
-
-                                            <!-- Price List -->
-                                            <h6>Pricing Plans</h6>
-                                            <div id="priceListContainer"></div>
-                                            <button type="button" class="btn btn-success mt-2" id="addPriceBtn">Add
-                                                Pricing Plan</button>
-
-                                        </div>
-
-                                        <hr>
-
-                                        <h4 class="mb-3">Footer Section</h4>
-
-                                        <!-- Footer section -->
-                                        <div id="footerSection">
-                                            <!-- Footer Heading -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Heading</label>
-                                                <input type="text" id="footerHeading" class="form-control"
-                                                    placeholder="Enter pricing heading">
-                                            </div>
-
-                                            <!-- Footer Subheading -->
-                                            <div class="mb-3">
-                                                <label class="form-label">Subheading</label>
-                                                <input type="text" class="form-control" id="footerSubheading"
-                                                    placeholder="Enter pricing subheading">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label">Address</label>
-                                                <input type="text" class="form-control" id="address"
-                                                    placeholder="Enter address">
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-md-6 mb-2">
-                                                    <div class="mb-2">
-                                                        <label class="form-label">Enter Phone</label>
-                                                        <input type="text" id="footerPhoneNumber" class="form-control"
-                                                            placeholder="Enter phone number">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6 mb-2">
-                                                    <div class="mb-2">
-                                                        <label class="form-label">Email</label>
-                                                        <input type="email" id="footerEmail" class="form-control"
-                                                            placeholder="Enter email">
+                                                        <label class="form-label">Nav bar Image</label>
+                                                        <input type="file" accept="image/*" id="navImage"
+                                                            class="form-control"
+                                                            placeholder="Enter main the navbar image">
+                                                        <small class="text-muted">You can enter a brand name or upload
+                                                            an
+                                                            image.</small>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-4 mb-2">
-                                                    <label class="form-label">Instagram</label>
-                                                    <input type="text" id="linkInstagram" class="form-control"
-                                                        placeholder="Enter Instagram link">
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Contact Number </label>
+                                                        <input type="number" id="contactNumber" class="form-control"
+                                                            placeholder="Enter main heading">
+                                                    </div>
                                                 </div>
-                                                <div class="col-md-4 mb-2">
-                                                    <label class="form-label">Facebook</label>
-                                                    <input type="text" id="linkFacebook" class="form-control"
-                                                        placeholder="Enter Facebook link">
-                                                </div>
-                                                <div class="col-md-4 mb-2">
-                                                    <label class="form-label">Twitter (X)</label>
-                                                    <input type="text" id="linkX" class="form-control"
-                                                        placeholder="Enter Twitter link">
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Contact Number link</label>
+                                                        <input type="text" id="contactLink" class="form-control"
+                                                            placeholder="Enter main heading">
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary w-100 my-2">Save
-                                            Configuration</button>
-                                    </form>
+                                            <div class="row">
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Button Content</label>
+                                                        <input type="text" id="buttonText" class="form-control"
+                                                            placeholder="Enter button text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-2">
+                                                    <div class="mb-3">
+                                                        <label class="form-label">Button Link</label>
+                                                        <input type="text" id="buttonLink" class="form-control"
+                                                            placeholder="Enter button link">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Body Main Heading</label>
+                                                <input type="text" id="heading" class="form-control"
+                                                    placeholder="Enter body heading">
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label class="form-label">Sub Heading</label>
+                                                <input type="text" id="subheading" class="form-control"
+                                                    placeholder="Enter sub heading">
+                                            </div>
+
+                                            <hr>
+
+                                            <!-- Section Toggles -->
+
+                                            <!-- About Section -->
+
+                                            <h4 class="mb-3">About Section</h4>
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input section-toggle" type="checkbox"
+                                                    id="aboutToggle" checked>
+                                                <label class="form-check-label" for="aboutToggle">Enable About
+                                                    Section</label>
+                                            </div>
+
+                                            <div id="aboutSection">
+                                                <div class="mb-3">
+                                                    <label class="form-label">Title</label>
+                                                    <input type="text" class="form-control" id="aboutTitle"
+                                                        placeholder="Enter About Title">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Heading</label>
+                                                    <input type="text" class="form-control" id="aboutHeading"
+                                                        placeholder="Enter About Heading">
+                                                </div>
+
+                                                <!-- Features List -->
+                                                <h5 class="mb-3">Features</h5>
+                                                <div id="featuresContainer"></div>
+
+                                                <!-- Add Feature Button -->
+                                                <button type="button" class="btn btn-success mb-3"
+                                                    id="addFeatureBtn">Add
+                                                    Feature</button>
+                                            </div>
+                                            <hr>
+
+                                            <div id="teamsSection">
+                                                <h4 class="mb-3">Teams Section</h4>
+
+                                                <!-- Service Heading -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Heading</label>
+                                                    <input type="text" id="teamHeading" class="form-control"
+                                                        placeholder="Enter service heading">
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label class="form-label">Insert the images</label>
+                                                    <input type="file" multiple accept="image/*" id="teamImages"
+                                                        class="form-control" placeholder="Enter thumbnail URL">
+                                                </div>
+
+                                            </div>
+
+                                            <hr>
+                                            <!-- Services Section -->
+                                            <h4 class="mb-3">Services Sections</h4>
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="servicesToggle"
+                                                    checked>
+                                                <label class="form-check-label" for="serviceToggle">Enable Service
+                                                    Section</label>
+                                            </div>
+
+                                            <div id="serviceSection" class="mb-3">
+                                                <!-- Service Title -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Title (e.g., Amenities)</label>
+                                                    <input type="text" id="serviceTitle" class="form-control"
+                                                        placeholder="Enter service title">
+                                                </div>
+
+                                                <!-- Service Heading -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Heading (e.g., What we offer)</label>
+                                                    <input type="text" id="serviceHeading" class="form-control"
+                                                        placeholder="Enter service heading">
+                                                </div>
+
+
+                                                <!-- Description -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Description</label>
+                                                    <textarea class="form-control" rows="3" id="serviceDescription"
+                                                        placeholder="Enter service description"></textarea>
+                                                </div>
+                                                <!-- Description -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Features</label>
+                                                    <input class="form-control" rows="3" id="serviceFeatures"
+                                                        placeholder="Enter all features seperated by comas"></input>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Video URL</label>
+                                                            <input type="file" accept="video/*" id="serviceVideo"
+                                                                class="form-control" placeholder="Enter video URL">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Thumbnail URL</label>
+                                                            <input type="file" accept="image/*"
+                                                                id="serviceVideoThumbnail" class="form-control"
+                                                                placeholder="Enter thumbnail URL">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Service Cards -->
+                                                <h6>Service Cards</h6>
+                                                <div id="cardsContainer"></div>
+                                                <button type="button" class="btn btn-success mt-2" id="addCardBtn">Add
+                                                    Card</button>
+
+                                                <!-- Video Section -->
+                                            </div>
+
+                                            <hr>
+
+
+
+                                            <!-- Pricing Section -->
+                                            <!-- Toggle Pricing Section -->
+                                            <h4 class="mb-3">Price Section</h4>
+                                            <div class="form-check form-switch mb-3">
+                                                <input class="form-check-input" type="checkbox" id="pricingToggle"
+                                                    checked>
+                                                <label class="form-check-label" for="pricingToggle">Enable Pricing
+                                                    Section</label>
+                                            </div>
+
+                                            <div id="pricingSection" class="mb-3">
+                                                <!-- Pricing Title -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Title (e.g., Single Occupancy
+                                                        Studios)</label>
+                                                    <input type="text" id="priceTitle" class="form-control"
+                                                        placeholder="Enter pricing title">
+                                                </div>
+
+                                                <!-- Pricing Heading -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Heading</label>
+                                                    <input type="text" id="priceHeading" class="form-control"
+                                                        placeholder="Enter pricing heading">
+                                                </div>
+
+                                                <!-- Pricing Subheading -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Subheading</label>
+                                                    <input type="text" class="form-control" id="priceSubheading"
+                                                        placeholder="Enter pricing subheading">
+                                                </div>
+
+                                                <!-- Price List -->
+                                                <h6>Pricing Plans</h6>
+                                                <div id="priceListContainer"></div>
+                                                <button type="button" class="btn btn-success mt-2" id="addPriceBtn">Add
+                                                    Pricing Plan</button>
+
+                                            </div>
+
+                                            <hr>
+
+                                            <h4 class="mb-3">Footer Section</h4>
+
+                                            <!-- Footer section -->
+                                            <div id="footerSection">
+                                                <!-- Footer Heading -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Heading</label>
+                                                    <input type="text" id="footerHeading" class="form-control"
+                                                        placeholder="Enter pricing heading">
+                                                </div>
+
+                                                <!-- Footer Subheading -->
+                                                <div class="mb-3">
+                                                    <label class="form-label">Subheading</label>
+                                                    <input type="text" class="form-control" id="footerSubheading"
+                                                        placeholder="Enter pricing subheading">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Address</label>
+                                                    <input type="text" class="form-control" id="address"
+                                                        placeholder="Enter address">
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="mb-2">
+                                                            <label class="form-label">Enter Phone</label>
+                                                            <input type="text" id="footerPhoneNumber"
+                                                                class="form-control" placeholder="Enter phone number">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 mb-2">
+                                                        <div class="mb-2">
+                                                            <label class="form-label">Email</label>
+                                                            <input type="email" id="footerEmail" class="form-control"
+                                                                placeholder="Enter email">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 mb-2">
+                                                        <label class="form-label">Instagram</label>
+                                                        <input type="text" id="linkInstagram" class="form-control"
+                                                            placeholder="Enter Instagram link">
+                                                    </div>
+                                                    <div class="col-md-4 mb-2">
+                                                        <label class="form-label">Facebook</label>
+                                                        <input type="text" id="linkFacebook" class="form-control"
+                                                            placeholder="Enter Facebook link">
+                                                    </div>
+                                                    <div class="col-md-4 mb-2">
+                                                        <label class="form-label">Twitter (X)</label>
+                                                        <input type="text" id="linkX" class="form-control"
+                                                            placeholder="Enter Twitter link">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary w-100 my-2">Save
+                                                Configuration</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
-
-                    </div>
-                </div><!--end container-->
-
-                <!-- Footer Start -->
-                <footer class="shadow py-3">
-                    <div class="container-fluid">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <div class="text-sm-start text-center mx-md-2">
-                                    <p class="mb-0 text-muted">©
-                                        <script>document.write(new Date().getFullYear())</script> Landrick. Design with
-                                        <i class="mdi mdi-heart text-danger"></i> by <a href="https://shreethemes.in/"
-                                            target="_blank" class="text-reset">Shreethemes</a>.
-                                    </p>
-                                </div>
-                            </div><!--end col-->
-                        </div><!--end row-->
                     </div><!--end container-->
-                </footer><!--end footer-->
-                <!-- End -->
+
+                    <!-- Footer Start -->
+                    <footer class="shadow py-3">
+                        <div class="container-fluid">
+                            <div class="row align-items-center">
+                                <div class="col">
+                                    <div class="text-sm-start text-center mx-md-2">
+                                        <p class="mb-0 text-muted">©
+                                            <script>document.write(new Date().getFullYear())</script> Landrick. Design
+                                            with
+                                            <i class="mdi mdi-heart text-danger"></i> by <a
+                                                href="https://shreethemes.in/" target="_blank"
+                                                class="text-reset">Shreethemes</a>.
+                                        </p>
+                                    </div>
+                                </div><!--end col-->
+                            </div><!--end row-->
+                        </div><!--end container-->
+                    </footer><!--end footer-->
+                    <!-- End -->
             </main>
             <!--End page-content" -->
     </div>

@@ -8,12 +8,13 @@ const auth = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
         const verifyUser = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        // console.log(verifyUser);
+        console.log(verifyUser, "verified user");
 
-        const user = await register.findOne({ _id: verifyUser._id });
+        const user = await register.findOne({ username: verifyUser.username });
+        // console.log(user, "user")
 
-        // if (user == null)
-        //     return res.redirect(`${baseURL}/login`)
+        if (user == null)
+            return res.redirect(`${baseURL}/auth/login`)
 
         req.user = user;
         req.accessToken = token
@@ -27,12 +28,12 @@ const auth2 = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
         const verifyUser = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        
+
 
         const user = await register.findOne({ _id: verifyUser._id });
-       
 
-        if(verifyUser !== null)
+
+        if (verifyUser !== null)
             return res.redirect(`${baseURL}/websites`)
         req.user = user;
         req.accessToken = token

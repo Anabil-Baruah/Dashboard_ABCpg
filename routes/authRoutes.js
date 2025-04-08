@@ -22,11 +22,11 @@ router.post("/login", async (req, res) => {
     // console.log("Route hit");
 
     const { username, password, role } = req.body;
-    console.log(req.body)
+    // console.log(req.body)
 
     if (role === "admin") {
       let adminUser = await User.findOne({ role: "admin" });
-      console.log(adminUser, "admin user")
+      // console.log(adminUser, "admin user")
       if (!adminUser) {
         console.log("No admin found, creating new one...");
 
@@ -48,7 +48,6 @@ router.post("/login", async (req, res) => {
 
       // Authenticate admin
       const passMatch = await bcrypt.compare(password, adminUser.password);
-      console.log(passMatch, "password match")
       if (!passMatch) {
         return res.status(401).json({ status: "error", message: "Invalid credentials" });
       }
@@ -64,12 +63,10 @@ router.post("/login", async (req, res) => {
       })
 
       const update = await User.findOneAndUpdate({ role: "admin" }, { $set: { accessToken } });
-      console.log(update, "updated")
       return res.status(200).json({ status: "Success", message: "User created" })
     }
     else if (role === "subadmin") {
       let subAdminUser = await User.findOne({ username, role: "subadmin" });
-      console.log(subAdminUser, "subadmin user")
       if (!subAdminUser) {
         return res.status(401).json({ status: "error", message: "Subadmin does not exist" });
       }
@@ -91,7 +88,6 @@ router.post("/login", async (req, res) => {
         httpOnly: true
       })
       const update = await User.findOneAndUpdate({ username, role: "subadmin" }, { $set: { accessToken } });
-      console.log(update, "updated")
       return res.status(200).json({ status: "Success", message: "User created", userId: update._id })
     }
     else {
@@ -104,7 +100,6 @@ router.post("/login", async (req, res) => {
 });
 
 router.post('/signUp', async (req, res) => {
-  console.log(req.body)
   try {
     // Get username, password, and role from the request body
     const { username, password, role, website } = req.body;
@@ -132,6 +127,7 @@ router.post('/signUp', async (req, res) => {
       role: "subadmin",
       website
     });
+    const token = await newSubadmin.generateAuthToken();
 
     // Save the subadmin user to the database
     await newSubadmin.save();

@@ -41,7 +41,7 @@
 
     <div class="page-wrapper toggled">
         <!-- sidebar-wrapper -->
-        <%- include('./common/navbar.ejs')%>
+        <%- include('./common/navbar.ejs', {userDetail})%>
             <!-- sidebar-wrapper  -->
 
             <!-- Start Page Content -->
@@ -137,7 +137,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% userDetail.forEach((user, index)=> { %>
+                                            <% userDetails.forEach((user, index)=> { %>
                                                 <tr>
                                                     <td>
                                                         <%= index + 1 %>

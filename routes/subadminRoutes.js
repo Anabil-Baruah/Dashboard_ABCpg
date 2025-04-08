@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
                     { path: "footer", model: "Footer" }
                 ]
             });
-            console.log(userDetail)
+            // console.log(userDetail, "features")
         res.render("index-subadmin", { userDetail })
     } catch (error) {
         res.status(500).json({ error: "Failed to create homepage", details: error.message });

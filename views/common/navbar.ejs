@@ -11,6 +11,7 @@
         </div>
 
         <ul class="sidebar-menu">
+            <% if(userDetail.role === "admin"){%>
             <li class="">
                 <a href="/websites"><i class="ti ti-home me-2"></i>Dashboard</a>
             </li>
@@ -20,9 +21,11 @@
             <li class="">
                 <a href="/user-details"><i class="ti ti-home me-2"></i>User management</a>
             </li>
+            <%}else{%>
             <li class="">
-                <a href="/subadmin"><i class="ti ti-home me-2"></i>Subadmin Dashboard</a>
+                <a href="/subadmin/<%= userDetail._id%>"><i class="ti ti-home me-2"></i>Subadmin Dashboard</a>
             </li>
+            <%}%>
         </ul>
         <!-- sidebar-menu  -->
     </div>

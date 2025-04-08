@@ -7,6 +7,7 @@ const About = require("../models/About");
 const Service = require("../models/Service");
 const Footer = require("../models/Footer");
 const Team = require("../models/Team");
+const User = require("../models/User")
 const dotenv = require("dotenv");
 const fs = require("fs");
 const path = require("path");
@@ -20,8 +21,9 @@ const router = express.Router();
 // Get all websites
 router.get("/", auth, async (req, res) => {
   try {
+    const userDetail = await User.findOne({ role: "admin" })
     const websites = await Website.find().populate("home");
-    res.render("index", { websites: websites });
+    res.render("index", { websites: websites, userDetail });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch websites" });
   }
@@ -49,6 +51,7 @@ router.get("/add-website/add", async (req, res) => {
 router.get("/:name", async (req, res) => {
   try {
     const website = await Website.findOne({ name: req.params.name })
+    const userDetail = await User.findOne({ role: "subadmin" })
       .populate("home") // Populating homepage details
       .populate("pricing") // Populating pricing page details
       .populate("about") // Populating about page details
@@ -58,7 +61,7 @@ router.get("/:name", async (req, res) => {
       .exec();
     // console.log(req.params.name, "name")
     if (!website) {
-      return res.status(404).json({ message: "Website not found" });
+      return res.status(404).json({ message: "Website not found", userDetail });
     }
     // console.log(website, "website")
     res.json(website);
@@ -231,6 +234,110 @@ router.post(
     }
   }
 );
+
+router.post("/edit/:userId", upload.fields([
+  { name: "serviceVideoThumbnail" },
+  { name: "serviceVideo" },
+  { name: "featuresImages" },
+  { name: "serviceCardImages" },
+  { name: "navImage" },
+  { name: "teamImages", maxCount: 20 }
+]), async (req, res) => {
+  try {
+    const { userId } = req.params;
+    console.log(userId, "id")
+
+    const {
+      name, websiteThemeColor, brandName, contactNumber, contactLink,
+      heading, subheading, buttonText, buttonLink,
+      aboutToggle, servicesToggle, pricingToggle,
+      aboutTitle, aboutHeading, featureArray, pricingPlansArray,
+      serviceTitle, serviceHeading, serviceDescription, serviceFeatures, teamHeading,
+      priceTitle, priceHeading, priceSubheading, footerHeading, footerSubheading,
+      address, footerPhoneNumber, footerEmail, linkInstagram, linkFacebook, linkX
+    } = req.body;
+
+    const user = await User.findById(userId)
+    const website = await Website.findById(user.website)
+      .populate("home pricing team about service footer");
+
+    console.log(website, "website")
+    if (!website) {
+      return res.status(404).json({ message: "Website not found" });
+    }
+
+    // Parse incoming JSON strings to arrays/objects
+    const parsedFeatureArray = JSON.parse(featureArray || "[]");
+    const parsedServiceFeatures = JSON.parse(serviceFeatures || "[]");
+    const parsedPricingPlansArray = JSON.parse(pricingPlansArray || "[]");
+
+    // Update nested documents
+    await Homepage.findByIdAndUpdate(website.home, {
+      navbar: {
+        brandName,
+        contact: { number: contactNumber, status: true, link: contactLink },
+        about: { status: aboutToggle === "true" },
+        services: { status: servicesToggle === "true" },
+        team: { status: true },
+        pricing: { status: pricingToggle === "true" },
+        blog: { status: true }
+      },
+      content: { heading, subheading, buttonText, buttonLink }
+    });
+
+    await About.findByIdAndUpdate(website.about, {
+      title: aboutTitle,
+      heading: aboutHeading,
+      features: parsedFeatureArray
+    });
+
+    await Team.findByIdAndUpdate(website.team, {
+      heading: teamHeading,
+      // Add image editing later
+    });
+
+    await Service.findByIdAndUpdate(website.service, {
+      title: serviceTitle,
+      heading: serviceHeading,
+      description: serviceDescription,
+      features: parsedServiceFeatures,
+      // card: [], // Add card editing later
+      // video: {}, // Add video editing later
+    });
+
+    await Pricing.findByIdAndUpdate(website.pricing, {
+      title: priceTitle,
+      heading: priceHeading,
+      subheading: priceSubheading,
+      pricingPlansArray: parsedPricingPlansArray
+    });
+
+    await Footer.findByIdAndUpdate(website.footer, {
+      heading: footerHeading,
+      subHeading: footerSubheading,
+      address,
+      phoneNumber: footerPhoneNumber,
+      email: footerEmail,
+      socials: {
+        instagram: linkInstagram,
+        facebook: linkFacebook,
+        x: linkX
+      }
+    });
+
+    // Update Website root object
+    website.name = name;
+    website.websiteThemeColor = websiteThemeColor;
+    await website.save();
+
+    res.status(200).json({ message: "Website updated successfully", website });
+
+  } catch (error) {
+    console.error("Error updating website:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
+
 
 
 /** 
