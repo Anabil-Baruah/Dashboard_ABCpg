@@ -204,7 +204,7 @@ document.getElementById("pgForm").addEventListener("submit", function (event) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log("Success:", data);
+            // console.log("Success:", data);
             alert("Website has been created succesfully !");
             window.location.reload();
         })

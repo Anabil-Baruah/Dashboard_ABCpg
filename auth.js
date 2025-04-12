@@ -1,14 +1,15 @@
 const jwt = require('jsonwebtoken');
 const register = require("./models/User");
 const baseURL = "http://localhost:4000"
-// const baseURL = "https://chat-sphere-381410.el.r.appspot.com"
+// const baseURL = "https://pginbangalore.com"
 require('dotenv').config()
 
 const auth = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
+        // console.log(token, "token")
         const verifyUser = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        console.log(verifyUser, "verified user");
+        // console.log(verifyUser, "verified user");
 
         const user = await register.findOne({ username: verifyUser.username });
         // console.log(user, "user")

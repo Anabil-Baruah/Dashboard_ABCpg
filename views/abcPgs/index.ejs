@@ -60,7 +60,7 @@
           <div class="logo">
             <a href="#">
               <% if (website.home.navbar.brandName !=="" ) { %>
-                <h4 class="text-dark">
+                <h4 class="text-light">
                   <%= website.home.navbar.brandName %>
                 </h4>
                 <% } else { %>
@@ -70,7 +70,7 @@
           </div>
 
           <!-- Hamburger Button -->
-          <button class="navbar-toggler d-block d-md-none" data-bs-toggle="modal" data-bs-target="#mobileNavModal"
+          <button class="navbar-toggler d-block d-md-none text-light" data-bs-toggle="modal" data-bs-target="#mobileNavModal"
             type="button" id="navToggle">
             ☰
           </button>
@@ -100,7 +100,7 @@
 
     <!-- header end -->
     <section class="hero-section for no-bottom"
-      style="background-color: <%=website?.websiteThemeColor %>; padding-bottom: 9rem;">
+      style="background-color: <%=website?.websiteThemeColor %>; padding-bottom: 6rem;">
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
@@ -331,45 +331,19 @@
           <div id="w-node-_7f1ff982-b5b7-2d1f-cda2-867e36520b2b-07dfe7ed"
             data-w-id="7f1ff982-b5b7-2d1f-cda2-867e36520b2b" style="" class="property_header_image-cover"><img
               loading="lazy"
-              src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b4_67d2568e689c401411f388ce_DSC05812-HDR.webp"
+              src="uploads/<%= website?.team?.images[0]%>"
               alt="" class="property_header_image" /></div>
           <div id="w-node-_9364217d-d248-94b7-f15f-21b434f1dda6-07dfe7ed"
             class="property_header_image-gallery w-dyn-list">
             <script type="text/x-wf-template"
               id="wf-template-9364217d-d248-94b7-f15f-21b434f1dda7">%3Cdiv%20role%3D%22listitem%22%20class%3D%22property_header_image-gallery-item%20w-dyn-item%20w-dyn-repeater-item%22%3E%3Cimg%20alt%3D%22%22%20loading%3D%22lazy%22%20width%3D%22Auto%22%20height%3D%22Auto%22%20src%3D%22https%3A%2F%2Fcdn.prod.website-files.com%2F6593ed11d5ad65d107dfe790%2F67d25a2ed4145a4b4ab4d0b1_67d2568fc1863eb91b02f6f9_DSC05803-HDR.webp%22%20class%3D%22property_header_image-gallery-image%22%2F%3E%3C%2Fdiv%3E</script>
             <div role="list" class="property_header_image-gallery-list w-dyn-items">
+              <% for(let i = 1; i < website?.team?.images?.length; i++) { %>
               <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
                   loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b1_67d2568fc1863eb91b02f6f9_DSC05803-HDR.webp"
+                  src="uploads/<%= website.team.images[i] %>"
                   class="property_header_image-gallery-image" /></div>
-              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
-                  loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0c0_67d2568e49220d0665e27111_DSC05813-HDR.webp"
-                  class="property_header_image-gallery-image" /></div>
-              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
-                  loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b7_67d2568e9a9ac17a63b911b2_DSC05783-HDR.webp"
-                  class="property_header_image-gallery-image" /></div>
-              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
-                  loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0ae_67d2568e8f7f40e02dbf17f1_DSC05788-HDR.webp"
-                  class="property_header_image-gallery-image" /></div>
-              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
-                  loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0b4_67d2568e689c401411f388ce_DSC05812-HDR.webp"
-                  class="property_header_image-gallery-image" /></div>
-              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
-                  loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0ba_67d2569349220d0665e273f3_DSC05828-HDR.webp"
-                  class="property_header_image-gallery-image" /></div>
-              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
-                  loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0a5_67d25693e92badb00bc24c01_DSC05823-HDR.webp"
-                  class="property_header_image-gallery-image" /></div>
-              <div role="listitem" class="property_header_image-gallery-item w-dyn-item w-dyn-repeater-item"><img alt=""
-                  loading="lazy" width="Auto" height="Auto"
-                  src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0bd_67d256931d645f054446fdbc_DSC05818-HDR.webp"
-                  class="property_header_image-gallery-image" /></div>
+                  <% } %>
             </div>
           </div>
           <!-- Modal with Carousel -->

@@ -7,7 +7,7 @@ const Website = require("../models/Website");
 router.get("/:name", async (req, res) => {
   try {
     const website = await Website.findOne({ name: req.params.name }).populate("home").populate("team").populate("pricing").populate("about").populate("service").populate("footer");   
-    console.log(website, "website")
+    // console.log(website, "website")
     if (!website) {
       return res.status(404).json({ error: "Website not found" });
     }

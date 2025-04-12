@@ -99,10 +99,13 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post('/signUp', async (req, res) => {
+router.post('/signUp', auth, async (req, res) => {
   try {
     // Get username, password, and role from the request body
     const { username, password, role, website } = req.body;
+    if (req.user.role !== "admin") {
+      return res.json("You are not allowed to create subadmin")
+    }
 
     // Ensure the role is set to "subadmin"
     if (role !== "subadmin") {
@@ -127,7 +130,7 @@ router.post('/signUp', async (req, res) => {
       role: "subadmin",
       website
     });
-    const token = await newSubadmin.generateAuthToken();
+    // const token = await newSubadmin.generateAuthToken();
 
     // Save the subadmin user to the database
     await newSubadmin.save();

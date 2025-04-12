@@ -3,13 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Landrick - Bootstrap 5 Multipurpose App, Saas & Software Landing & Admin Dashboard Template</title>
+    <title>Dashboard-subadmin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="description" content="Dashboardpage for subadmins" />
     <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
-    <meta name="author" content="Shreethemes" />
-    <meta name="email" content="support@shreethemes.in" />
-    <meta name="website" content="https://shreethemes.in/" />
     <meta name="Version" content="v4.9.0" />
 
     <!-- favicon -->
@@ -55,8 +52,10 @@
                         <div class="layout-specing">
                             <div class="d-flex align-items-center justify-content-between">
                                 <div>
-                                    <h6 class="text-muted mb-1">Welcome back, User</h6>
-                                    <h5 class="mb-0">Sahil</h5>
+                                    <h6 class="text-muted mb-1">Welcome back</h6>
+                                    <h5 class="mb-0">
+                                        <%= userDetail.username%>
+                                    </h5>
                                 </div>
 
                                 <div class="mb-0 position-relative">
@@ -786,8 +785,10 @@
             const serviceVideoThumbnail = document.getElementById("serviceVideoThumbnail").files[0];
             const serviceVideo = document.getElementById("serviceVideo").files[0];
 
-            if (serviceVideoThumbnail && serviceVideo) {
+            if (serviceVideoThumbnail) {
                 formData.append("serviceVideoThumbnail", serviceVideoThumbnail);
+            }
+            if (serviceVideo) {
                 formData.append("serviceVideo", serviceVideo);
             }
             // formData.append("serviceCards", JSON.stringify(extractServiceCards())); // Convert array to JSON
@@ -834,7 +835,6 @@
 
             const pathParts = window.location.pathname.split('/');
             const subadminId = pathParts[pathParts.length - 1];
-            console.log("Subadmin ID:", subadminId)
             // Send data to backend
             fetch(`/websites/edit/${subadminId}`, {
                 method: "POST",

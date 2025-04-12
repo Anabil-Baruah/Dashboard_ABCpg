@@ -21,9 +21,13 @@ const router = express.Router();
 // Get all websites
 router.get("/", auth, async (req, res) => {
   try {
-    const userDetail = await User.findOne({ role: "admin" })
-    const websites = await Website.find().populate("home");
-    res.render("index", { websites: websites, userDetail });
+    const userDetail = req.user
+    if (userDetail.role === "admin") {
+      const websites = await Website.find().populate("home");
+      res.render("index", { websites: websites, userDetail });
+    } else {
+      res.json("Unauthorised")
+    }
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch websites" });
   }
@@ -59,11 +63,9 @@ router.get("/:name", async (req, res) => {
       .populate("service") // Populating service page details
       .populate("footer") // Populating footer details
       .exec();
-    // console.log(req.params.name, "name")
     if (!website) {
       return res.status(404).json({ message: "Website not found", userDetail });
     }
-    // console.log(website, "website")
     res.json(website);
   } catch (error) {
     console.error("Error fetching website:", error);
@@ -77,7 +79,7 @@ router.get("/:name", async (req, res) => {
  * @desc    Create a new website with homepage & pricing
  */
 router.post(
-  "/",
+  "/", auth,
   upload.fields([
     { name: "serviceVideoThumbnail" },
     { name: "serviceVideo" },
@@ -235,7 +237,7 @@ router.post(
   }
 );
 
-router.post("/edit/:userId", upload.fields([
+router.post("/edit/:id", auth, upload.fields([
   { name: "serviceVideoThumbnail" },
   { name: "serviceVideo" },
   { name: "featuresImages" },
@@ -244,8 +246,8 @@ router.post("/edit/:userId", upload.fields([
   { name: "teamImages", maxCount: 20 }
 ]), async (req, res) => {
   try {
-    const { userId } = req.params;
-    console.log(userId, "id")
+    const { id } = req.params;
+    console.log(req.body, "id")
 
     const {
       name, websiteThemeColor, brandName, contactNumber, contactLink,
@@ -256,15 +258,31 @@ router.post("/edit/:userId", upload.fields([
       priceTitle, priceHeading, priceSubheading, footerHeading, footerSubheading,
       address, footerPhoneNumber, footerEmail, linkInstagram, linkFacebook, linkX
     } = req.body;
+    let user = req.user
+    let website
+    if (req.user.role === "admin") {
+      website = await Website.findById(id)
+        .populate("home pricing team about service footer");
+    }
+    else if (req.user.role === "subadmin") {
+      website = await Website.findById(user.website)
+        .populate("home pricing team about service footer");
+    } else {
+      return res.status(404).json({ message: "error" })
+    }
 
-    const user = await User.findById(userId)
-    const website = await Website.findById(user.website)
-      .populate("home pricing team about service footer");
 
-    console.log(website, "website")
     if (!website) {
       return res.status(404).json({ message: "Website not found" });
     }
+
+    // Extract uploaded image filenames
+    const serviceVideoThumbnail = req.files["serviceVideoThumbnail"] ? req.files["serviceVideoThumbnail"][0].filename : null;
+    const serviceVideo = req.files["serviceVideo"] ? req.files["serviceVideo"][0].filename : null;
+    const teamImages = req.files["teamImages"] ? req.files["teamImages"].map(file => `${file.filename}`) : [];
+    const serviceCards = req.body?.serviceTitles?.map((title, index) => ({ title }));
+
+    console.log(serviceVideo, serviceVideoThumbnail, "these")
 
     // Parse incoming JSON strings to arrays/objects
     const parsedFeatureArray = JSON.parse(featureArray || "[]");
@@ -292,17 +310,22 @@ router.post("/edit/:userId", upload.fields([
     });
 
     await Team.findByIdAndUpdate(website.team, {
-      heading: teamHeading,
-      // Add image editing later
+      $set: {
+        heading: teamHeading,
+        ...(teamImages.length > 0 && { images: teamImages })
+      }
     });
 
     await Service.findByIdAndUpdate(website.service, {
-      title: serviceTitle,
-      heading: serviceHeading,
-      description: serviceDescription,
-      features: parsedServiceFeatures,
-      // card: [], // Add card editing later
-      // video: {}, // Add video editing later
+      $set: {
+        title: serviceTitle,
+        heading: serviceHeading,
+        description: serviceDescription,
+        features: parsedServiceFeatures,
+        card: serviceCards,
+        ...(serviceVideo && { "video.url": serviceVideo }),
+        ...(serviceVideoThumbnail && { "video.thumbnail": serviceVideoThumbnail })
+      }
     });
 
     await Pricing.findByIdAndUpdate(website.pricing, {

@@ -3,13 +3,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Landrick - Bootstrap 5 Multipurpose App, Saas & Software Landing & Admin Dashboard Template</title>
+    <title>Dashboard-admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premium Bootstrap 5 Landing Page Template" />
+    <meta name="description" content="Dshboard for admin" />
     <meta name="keywords" content="Saas, Software, multi-uses, HTML, Clean, Modern" />
-    <meta name="author" content="Shreethemes" />
-    <meta name="email" content="support@shreethemes.in" />
-    <meta name="website" content="https://shreethemes.in/" />
     <meta name="Version" content="v4.9.0" />
 
     <!-- favicon -->
@@ -55,7 +52,7 @@
                     <div class="layout-specing">
                         <div class="d-flex align-items-center justify-content-between">
                             <div>
-                                <h6 class="text-muted mb-1">Welcome back, User</h6>
+                                <h6 class="text-muted mb-1">Welcome back, <%= userDetail?.username%></h6>
                                 <h5 class="mb-0">Dashboard</h5>
                             </div>
 
@@ -154,6 +151,8 @@
                                                         class="btn btn-primary btn-sm me-2 toggle-btn">View</a>
                                                     <a href="#" onclick="deleteWebsite('<%= website._id %>')"
                                                         class="btn btn-danger btn-sm me-2 toggle-btn">Delete</a>
+                                                    <a href="/edit/<%= website._id %>"
+                                                        class="btn btn-success btn-sm me-2 toggle-btn">Edit</a>
 
                                                 </td>
                                             </tr>

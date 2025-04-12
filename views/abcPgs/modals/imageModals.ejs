@@ -7,7 +7,7 @@
                         <% if (website.team.images && website.team.images.length > 0) { %>
                             <% website.team.images.forEach((image, index) => { %>
                                 <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
-                                    <img src="https://cdn.prod.website-files.com/6593ed11d5ad65d107dfe790/67d25a2ed4145a4b4ab4d0a5_67d25693e92badb00bc24c01_DSC05823-HDR.webp" class="d-block w-100" alt="Slide <%= index + 1 %>">
+                                    <img src="uploads/<%= image%>" class="d-block w-100" alt="Slide <%= index + 1 %>">
                                 </div>
                             <% }) %>
                         <% } else { %>
